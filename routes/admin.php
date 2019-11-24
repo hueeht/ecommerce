@@ -11,6 +11,17 @@
 |
 */
 
-Route::get('/admin', function () {
-    return view('admin.index');
-})->middleware('auth');
+use Illuminate\Support\Facades\Route;
+
+Route::get('', [
+    'as' => 'admin.index',
+    'uses' => 'AdminController@index'
+]);
+Route::resource('categories', 'ManageCategoryController', [
+    'as' => 'admin',
+    'parameters' => ['categories' => 'id']
+]);
+Route::resource('products', 'ManageProductController', [
+    'as' => 'admin',
+    'parameters' => ['products' => 'id']
+]);
