@@ -24,7 +24,7 @@
                     <!-- top links -->
                     <div class="toplinks col-md-7 col-sm-8 col-xs-12 hidden-xs">
                         <ul class="links">
-                            <li ><a title="@lang('header.sin')" href="#"><span class="hidden-xs">@lang('header.sin')</span></a></li>
+                            <li ><a title="@lang('header.sin')" href=""><span class="hidden-xs">@lang('header.sin')</span></a></li>
                         </ul>
                     </div>
                 </div>
@@ -38,14 +38,26 @@
                         <!-- Navbar -->
                         <div class="nav-inner">
                             <ul id="nav" class="hidden-xs hidden-sm">
-                                <li class="level-a jtv-level-top"><a href="#" class="jtv-level-top"><span>@lang('shop.cat1')</span></a>
+                                @foreach ($categories as $cate1)
+                                <li class="level-a drop-menu"><a href="#"><span>{{$cate1->name}}</span></a>
+                                    @if( $cate1->sub->count() )
+                                    <ul class="level-b">
+                                        @foreach ($cate1->sub as $cate2)
+                                        <li class="level-b"><a href="#"><span>{{$cate2->name}}</span></a>
+                                            @if( $cate2->sub->count() )
+                                            <ul class="level-c right-sub">
+                                                @foreach($cate2->sub as $cate3)
+                                                    <li class="level-c"><a href="#"><span>{{ $cate3->name }}</span></a></li>
+                                                @endforeach
+                                            </ul>
+                                            @endif
+                                        </li>
+                                        @endforeach
+                                    </ul>
+                                    @endif
                                 </li>
-                                <li class="level-a jtv-level-top"><a href="#" class="jtv-level-top"><span>@lang('shop.cat2')</span></a>
-                                </li>
-                                <li class="level-a jtv-level-top"><a href="#" class="jtv-level-top"><span>@lang('shop.cat3')</span></a>
-                                </li>
-                            </ul>
-
+                                @endforeach
+                                </ul>
                             <!-- top cart -->
                             <div class="top-cart">
                                 <div class="top-cart-contain">

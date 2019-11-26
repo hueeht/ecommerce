@@ -27,6 +27,8 @@
     "countdown": "^2.2.0",
     "slider-revolution": "^4.3.7",
     "slider-rev": "*",
-    "font-awesome": "fontawesome#v4.7.0"
+    "font-awesome": "fontawesome#v4.7.0",
+    "admin-bower": "*",
+    "bower-ad": "*"
   }
 }

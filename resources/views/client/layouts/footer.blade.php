@@ -8,7 +8,7 @@
                 <div class="col-xs-12 col-sm-9 col-md-9">
                     <p> <i class="fa fa-map-marker"></i> @lang('shop.address')</p>
                     <p><i class="fa fa-phone"></i><span> @lang('84-24-3795-5417')</span> </p>
-                    <p> <i class="fa fa-envelope"></i><span><a href="mailto:support@gmail.com"> @lang('support@gmail.com')</a></span></p>
+                    <p> <i class="fa fa-envelope"></i><span><a href="#"> @lang('support@gmail.com')</a></span></p>
                 </div>
                 <div class="col-xs-12 col-sm-3 col-md-3">
                     <div class="footer-links">

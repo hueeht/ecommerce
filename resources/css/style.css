@@ -2,7 +2,7 @@
 
   File Name: style.css
   Template Name: Fabulous
-  Created By: justthemevalley 
+
  
  [Table of contents]
 
@@ -104,7 +104,7 @@ img {
 2. Newsletter Popup
 ******************************************/
 .modal-dialog.newsletter-popup {
-	background: rgba(0, 0, 0, 0) url("../images/newsletter.jpg") repeat scroll 0 0;
+	background: rgba(0, 0, 0, 0) url("../storage/images/newsletter.jpg") repeat scroll 0 0;
 	width: 775px;
 	height: 375px;
 	margin-top: 12%;
@@ -4030,7 +4030,7 @@ figure.effect p {
 	position: absolute;
 	top: 0;
 	left: 0;
-	background-image: url(../images/header-shop-men.jpg);
+	background-image: url("../storage/images/header-shop-men.jpg");
 	background-position-x: 50%;
 }
 .shop_header.has_big_img {
@@ -4056,7 +4056,7 @@ figure.effect p {
 	right: 0;
 	bottom: 0;
 	left: 0;
-	background: rgba(0,0,0,0.3) url(../images/category-img-overlay.png) repeat top left;
+	background: rgba(0,0,0,0.3) url("../storage/images/category-img-overlay.png") repeat top left;
 }
 /*------- 18. Sidebar ---------*/
 
@@ -4148,12 +4148,12 @@ figure.effect p {
 	width: 12px;
 	height: 12px;
 	margin-right: 6px;
-	background: url("../images/checkbox.png") no-repeat;
+	background: url("../storage/images/checkbox.png") no-repeat;
 	padding: 0;
 	border: none
 }
 .check-box-list input[type="checkbox"]:checked+label span.button {
-	background: #00b9f5 url("../images/checked.png") no-repeat center center
+	background: #00b9f5 url("../storage/images/checked.png") no-repeat center center
 }
 .check-box-list input[type="checkbox"]:checked+label {
 	color: #00b9f5
@@ -4440,7 +4440,7 @@ figure.effect p {
 	position: inherit;
 }
 .jtv-btn-remove {
-	background-image: url(../images/btn_remove.png);
+	background-image: url("../storage/images/btn_remove.png");
 	margin: 0px 0 0 5px;
 }
 .jtv-btn-remove:hover, .jtv-btn-remove:focus {
@@ -6419,7 +6419,7 @@ button.button.submit:before {
 	right: 10px;
 	text-decoration: none;
 	width: 45px;
-	background: url(../storage/images/to-top-arrow.png) no-repeat center;
+	background: url("../storage/images/to-top-arrow.png") no-repeat center;
 	background-color: #0083ff;
 	text-transform: uppercase;
 	z-index: 100;
@@ -6656,7 +6656,7 @@ button.button.submit:before {
 	text-align: center;
 }
 .jtv-cart-summary .action a {
-	background: url("../images/delete_icon.png") no-repeat center center;
+	background: url("../storage/images/delete_icon.png") no-repeat center center;
 	font-size: 0;
 	height: 9px;
 	width: 9px;
@@ -8546,4 +8546,79 @@ address {
 .header-silder {
 	z-index:3;
 	white-space:nowrap;
+}
+
+.right-sub {
+	top: 0px;
+	left: 185px;
+	display: none;
+}
+
+#tab-hidden{
+	display: none;
+}
+
+/*
+ Cloud Zoom CSS. (c)2012-2014 Star Plugins.
+*/
+
+/* CSS for lens */
+.cloudzoom-lens {
+	border: 2px solid #888;
+	background-color: #fff;
+	width: 100px;
+	height: 100px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, .4);
+	cursor: crosshair;
+	z-index: 10
+}
+/* CSS for zoom window. */
+.cloudzoom-zoom {
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	background-color: #fff;
+	-webkit-box-shadow: 0 0 4px rgba(0, 0, 0, .27);
+	-moz-box-shadow: 0 0 4px rgba(0, 0, 0, .27);
+	box-shadow: 0 0 4px rgba(0, 0, 0, .27);
+	overflow: hidden;
+	margin: 0 0 0 15px;
+	padding: 0;
+	border: 5px solid #fff;
+	border-bottom: 5px solid #fff;
+	z-index: 10000!important
+}
+/* CSS for zoom window in 'inside' mode. */
+.cloudzoom-zoom-inside {
+	border: none;
+	box-shadow: none
+}
+/* CSS for captions */
+.cloudzoom-caption {
+	display: none;
+	text-align: left;
+	background-color: #000;
+	color: #fff;
+	font-weight: 700;
+	padding: 10px;
+	font-family: sans-serif;
+	font-size: 11px
+}
+/* A blank image */
+.cloudzoom-blank {
+	background-image: url("../storage/images/blank.png");
+}
+/* The animated ajax loading image */
+.cloudzoom-ajax-loader {
+	background-image: url("../storage/images/ajax-loader.gif");
+	width: 32px;
+	height: 32px;
+}
+@media (max-width: 767px) {
+	.cloudzoom-lens, .cloudzoom-zoom {
+		display: none !important;
+	}
+	.cloudzoom-blank, .cloudzoom-blank > div:first-child {
+		background: transparent !important;
+	}
 }
