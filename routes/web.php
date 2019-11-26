@@ -10,7 +10,15 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('.client.index');
-});
+Route::get('/', [
+    'as' => 'client.index',
+    'uses' => 'ProductController@index'
+]);
+
+Route::get('/detail', [
+    'as' => 'client.product.detail',
+    'uses' => 'ProductController@getDetail'
+]);
+
