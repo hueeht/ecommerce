@@ -1,0 +1,14 @@
+{
+  "name": "admin_template",
+  "homepage": "https://github.com/cuongcx1998/admin_template",
+  "_release": "dec790cbff",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "dec790cbff31b3aff7f0b9b99aad860a31e06c1c"
+  },
+  "_source": "https://github.com/cuongcx1998/admin_template.git",
+  "_target": "*",
+  "_originalSource": "https://github.com/cuongcx1998/admin_template.git",
+  "_direct": true
+}
