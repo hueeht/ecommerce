@@ -1,6 +1,5 @@
 @include('client.layouts.master')
 @section('content')
-  {{'demoooooo'}}
 <section class="main-container col1-layout">
     <div class="main container">
       <div class="account-login">

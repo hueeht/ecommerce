@@ -13,15 +13,21 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('', [
-    'as' => 'admin.index',
-    'uses' => 'AdminController@index'
-]);
-Route::resource('categories', 'ManageCategoryController', [
-    'as' => 'admin',
-    'parameters' => ['categories' => 'id']
-]);
-Route::resource('products', 'ManageProductController', [
-    'as' => 'admin',
-    'parameters' => ['products' => 'id']
-]);
+Route::group(['middleware' => ['auth', 'checkRole']], function(){
+    Route::get('', [
+        'as' => 'admin.index',
+        'uses' => 'AdminController@index'
+    ]);
+    Route::resource('categories', 'ManageCategoryController', [
+        'as' => 'admin',
+        'parameters' => ['categories' => 'id']
+    ]);
+    Route::resource('products', 'ManageProductController', [
+        'as' => 'admin',
+        'parameters' => ['products' => 'id']
+    ]);
+    Route::resource('users', 'ManageUserController', [
+        'as' => 'admin',
+        'parameters' => ['Users' => 'id']
+    ]);
+});

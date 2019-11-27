@@ -1,34 +1,21 @@
 {
-  "name": "demo",
+  "name": "mobileweb",
   "description": "",
   "main": "",
   "authors": [
-    "hoanghuetm <kidinu@hotmail.com>"
+    "cuongcx98 <cxchtc1998@gmail.com>"
   ],
   "license": "MIT",
-  "homepage": "",
-  "private": true,
+  "homepage": "https://github.com/hoanghuetm/mobileweb",
   "ignore": [
     "**/.*",
     "node_modules",
     "bower_components",
+    "public/bower_components/",
     "test",
     "tests"
   ],
   "dependencies": {
-    "bootstrap": "v3.3.7",
-    "jquery": "jQuery#2.1.1",
-    "font-awesome-sass": "4.7.0",
-    "pixeden-stroke-7-icon": "bower-pe-icon#^1.2.3",
-    "simple-line-icons": "simple-icon#^2.4.1",
-    "owl.carousel": "owl-pack#^2.3.4",
-    "jquery-ui": "1.11.4",
-    "jtv-menu": "*",
-    "countdown": "^2.2.0",
-    "slider-revolution": "^4.3.7",
-    "slider-rev": "*",
-    "font-awesome": "fontawesome#v4.7.0",
-    "admin-bower": "*",
-    "bower-ad": "*"
+    "admin_template": "https://github.com/cuongcx1998/admin_template"
   }
 }

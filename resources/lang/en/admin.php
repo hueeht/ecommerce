@@ -3,6 +3,7 @@ return [
     'submit' => 'Submit',
     'are_you_sure' => 'Are you sure?',
     'category' => 'CATEGORY',
+    'action' => 'ACTION',
     //categories
     'list_categories' => 'LIST CATEGORIES',
     'root' => 'ROOT',
@@ -37,5 +38,15 @@ return [
     'memory' => 'MEMORY',
     'list_prd' => 'LIST PRODUCT',
     'add_prd' => 'ADD PRODUCT',
-    'action' => 'ACTION'
+
+    //user
+    'addr' => 'ADDRESS',
+    'email' => 'EMAIL',
+    'phone' => 'PHONE',
+    'role' => 'ROLE',
+    'permission' => 'PERMISSION',
+    'client' => 'Client',
+    'admin' => 'Admin',
+    'add_user' => 'ADD USER',
+    'list_user' => 'LIST USER'
 ];

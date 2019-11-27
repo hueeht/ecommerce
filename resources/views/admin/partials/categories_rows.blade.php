@@ -14,7 +14,7 @@
     </span>
     <div class="category-fix">
         <a class="btn btn-warning" href="{{ route('admin.categories.edit', $category->id) }}"><i class="fa fa-edit"></i></a>
-        <button class="btn btn-danger" type="submit" onclick="return confirm('{{ trans('admin.are_you_sure') }}')"><i class="fas fa-trash-alt"></i></button>
+        <button class="btn btn-danger" type="submit" id="delete"><i class="fas fa-trash-alt"></i></button>
     </div>
 </div>
 </form>
