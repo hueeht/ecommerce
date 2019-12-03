@@ -48,5 +48,12 @@ return [
     'client' => 'Client',
     'admin' => 'Admin',
     'add_user' => 'ADD USER',
-    'list_user' => 'LIST USER'
+    'list_user' => 'LIST USER',
+
+    //order
+    'total_price' => 'TOTAL PRICE',
+    'total_quantity' => 'TOTAL QUANTITY',
+    'purchaser' => 'PURCHASER',
+    'status' => 'STATUS',
+    'list_order' => 'LIST ORDER',
 ];

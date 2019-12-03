@@ -17,12 +17,12 @@
             <span>{{ trans('admin.product') }}</span></a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href=#>
+        <a class="nav-link" href={{ route('admin.orders.index') }}>
             <i class="fa fa-shopping-cart"></i>
             <span>{{ trans('admin.order') }}</span></a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href=#>
+        <a class="nav-link" href={{ route('admin.users.index') }}>
             <i class="fas fa-user-cog"></i>
             <span>{{ trans('admin.user') }}</span></a>
     </li>

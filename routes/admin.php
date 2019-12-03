@@ -28,6 +28,10 @@ Route::group(['middleware' => ['auth', 'checkRole']], function(){
     ]);
     Route::resource('users', 'ManageUserController', [
         'as' => 'admin',
-        'parameters' => ['Users' => 'id']
+        'parameters' => ['users' => 'id']
+    ]);
+    Route::resource('orders', 'ManageOrderController', [
+        'as' => 'admin',
+        'parameters' => ['orders' => 'id']
     ]);
 });

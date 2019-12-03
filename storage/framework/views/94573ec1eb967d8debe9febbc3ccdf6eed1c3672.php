@@ -17,12 +17,12 @@
             <span><?php echo e(trans('admin.product')); ?></span></a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href=#>
+        <a class="nav-link" href=<?php echo e(route('admin.orders.index')); ?>>
             <i class="fa fa-shopping-cart"></i>
             <span><?php echo e(trans('admin.order')); ?></span></a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href=#>
+        <a class="nav-link" href=<?php echo e(route('admin.users.index')); ?>>
             <i class="fas fa-user-cog"></i>
             <span><?php echo e(trans('admin.user')); ?></span></a>
     </li>
