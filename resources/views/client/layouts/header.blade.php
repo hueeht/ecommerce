@@ -11,7 +11,7 @@
                         <div class="jtv-lang-cur-wrapper">
                             <div class="jtv-inner-box">
                                 <div class="block jtv-language-block">
-                                    <div class="lg-cur"><span> <img src="{{ asset('storage/images/vietnam.png') }}" alt="Vietnam"> <span class="lg-fr">@lang('header.vn')</span> <i class="fa fa-angle-down"></i> </span> </div>
+                                    <div class="lg-cur"><span><img src="{{ asset('storage/images/vietnam.png') }}" alt="Vietnam"><span class="lg-fr">@lang('header.vn')</span><i class="fa fa-angle-down"></i></span></div>
                                     <ul>
                                         <li><a href="#"> <img src="{{ asset('storage/images/english.png') }}" alt="flag"><span>@lang('header.en')</span></a></li>
                                         <li><a href="#"> <img src="{{ asset('storage/images/vietnam.png') }}" alt="flag"><span>@lang('header.vn')</span></a></li>
@@ -20,7 +20,6 @@
                             </div>
                         </div>
                     </div>
-
                     <!-- top links -->
                     <div class="toplinks col-md-7 col-sm-8 col-xs-12 hidden-xs">
                         <ul class="links">
@@ -34,7 +33,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 col-sm-12 col-xs-12 jtv-logo-block">
-                        <div class="logo"><a title="Home" href="#"><img alt="e-commerce" src="{{ asset('storage/images/logo.png') }}"></a> </div>
+                        <a href="{{ route('home.index') }}"><img src="{{ asset('storage/images/logo.png') }}"></a>
                         <!-- Navbar -->
                         <div class="nav-inner">
                             <ul id="nav" class="hidden-xs hidden-sm">
@@ -63,7 +62,7 @@
                                 <div class="top-cart-contain">
                                     <div class="mini-cart">
                                         <div data-toggle="dropdown" data-hover="dropdown" class="basket dropdown-toggle"><a href="#">
-                                                <div class="shoppingcart-inner"><span class="cart-title"><i class="fa fa-shopping-cart"></i></span> <span class="cart_count"></span></div>
+                                                <div class="shoppingcart-inner"><span class="cart-title"><i class="fa fa-shopping-cart"></i></span><span class="cart_count cart-quantity">{{ $carts_qty }}</span></div>
                                             </a></div>
                                         <div>
                                             <div class="top-cart-content">
@@ -91,9 +90,7 @@
                                 </div>
                             </div>
                         </div>
-
                         <!-- end nav -->
-
                     </div>
                 </div>
             </div>

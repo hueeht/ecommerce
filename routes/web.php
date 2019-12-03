@@ -13,12 +13,28 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [
-    'as' => 'client.index',
-    'uses' => 'ProductController@index'
+    'as' => 'home.index',
+    'uses' => 'HomeController@index'
 ]);
 
-Route::get('/detail', [
-    'as' => 'client.product.detail',
+Route::get('/cart', [
+    'as' => 'home.index',
+    'uses' => 'CartController@show'
+]);
+
+Route::get('/products/{id}', [
+    'as' => 'home.products.detail',
     'uses' => 'ProductController@getDetail'
 ]);
+
+Route::post('/carts/add', [
+    'as' => 'home.carts.add',
+    'uses' => 'CartController@addToCart'
+]);
+
+Route::get('/carts', [
+    'as' => 'home.carts.index',
+    'uses' => 'CartController@index'
+]);
+
 

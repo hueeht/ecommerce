@@ -2,9 +2,13 @@
 
 namespace App\Providers;
 
+use App\Http\Controllers\Client\CartController;
+use http\Env\Request;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 use App\Http\Controllers\Client\CategoryController;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Cookie;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -28,5 +32,12 @@ class AppServiceProvider extends ServiceProvider
         $cat = new CategoryController();
         $categories = $cat->getSubCategories(1);
         View::share('categories', $categories);
+
+        $carts_qty = 0;
+        if(Cookie::get('cart')) {
+            $carts = Crypt::decrypt(Cookie::get('cart'));
+            $carts_qty = count($carts);
+        }
+        View::share('carts_qty', $carts_qty);
     }
 }

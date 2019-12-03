@@ -50,7 +50,6 @@
                                 </ul>
                             </div>
                             <!-- /.navbar-collapse -->
-
                         </div>
                         <div class="tab-container">
                             <!-- tab new products -->
@@ -62,7 +61,7 @@
                                                 <div class="item-inner">
                                                         <div class="item-img">
                                                             <div class="item-img-info">
-                                                                <a class="product-image" href="#"><img class="img-responsive" src="{{ asset('storage/images/products/img01.jpg') }}"></a>
+                                                                <a class="product-image" href="{{ route('home.products.detail',['id' => $product->id ]) }}"><img class="img-responsive" src="{{ asset('storage/images/products/img01.jpg') }}"></a>
                                                                 <div class="new-label new-top-left">new</div>
                                                                 <div class="action">
                                                                     <a href="" title="Quick view" ><i class="fa fa-search"></i></a>

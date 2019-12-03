@@ -8,22 +8,21 @@ use App\Models\Product;
 
 class ProductController extends Controller
 {
-    
-    public function index()
-    {
-        $news = $this->getListProducts()->sortByDesc('created_at');
-        $hots = $this->getListProducts();
 
-        return view('client.index', compact('news', 'hots'));
+    public static function getNewProducts()
+    {
+        return Product::all()->sortByDesc('created_at');
     }
 
-    public function getListProducts()
+    public static function getHotProducts()
     {
         return Product::all();
     }
 
-    public function getDetail()
+    public function getDetail($id)
     {
-        return view('client.product.detail');
+        $product = Product::findOrFail($id);
+        return view('client.product.detail', compact('product'));
     }
+
 }
