@@ -15,4 +15,5 @@ return [
     'en' => 'English',
     'sup' => 'Sign up',
     'sin' => 'Sign in',
+    'out' => 'Log out',
 ];

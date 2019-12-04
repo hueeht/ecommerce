@@ -52,7 +52,7 @@ class ManageOrderController extends Controller
      */
     public function show($id)
     {
-        $arr = [];
+        $order = Order::find($id);
         $order_details = Order::find($id)->orderDetails;
         $buyer = Order::find($id)->user;
         $products = Product::all();
@@ -60,6 +60,7 @@ class ManageOrderController extends Controller
             'details' => $order_details,
             'buyer' => $buyer,
             'products' => $products,
+            'order' => $order,
         ]);
     }
 
@@ -83,7 +84,10 @@ class ManageOrderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $order = Order::find($id);
+        $order->status = $request->status;
+        $order->update();
+        return redirect()->route('admin.orders.index');
     }
 
     /**

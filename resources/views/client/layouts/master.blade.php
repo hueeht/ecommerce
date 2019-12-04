@@ -17,10 +17,11 @@
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('storage/images/favicon.ico')}}">
 
     <!-- Bootstrap css-->
-    <link rel="stylesheet" href="{{ asset('bower_components/client_bower/bootstrap/dist/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bower_components/client_bower/bootstrap/dist/css/bootstrap.css') }}">
 
     <!-- Fontawesome css-->
     <link rel="stylesheet" href="{{ asset('bower_components/client_bower/font-awesome/css/font-awesome.min.css') }}">
+    <link href={{ asset('bower_components/admin_template/vendor/fontawesome-free/css/all.min.css') }} rel="stylesheet" type="text/css">
 
     <!-- simple-line-icons css-->
     <link rel="stylesheet" href="{{ asset('bower_components/client_bower/simple-line-icons/css/simple-line-icons.css') }}">
@@ -47,10 +48,10 @@
     @yield('content')
     @include('client.layouts.footer')
     <!-- jquery js -->
-    <script src="{{asset('bower_components/client_bower/jquery/dist/jquery.min.js')}}"></script>
+    <script src="{{asset('bower_components/client_bower/jquery/dist/jquery.js')}}"></script>
 
     <!-- bootstrap js -->
-    <script src="{{asset('bower_components/client_bower/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+    <script src="{{asset('bower_components/client_bower/bootstrap/dist/js/bootstrap.js')}}"></script>
 
     <!-- owl.carousel.min js -->
     <script src="{{asset('bower_components/client_bower/owl.carousel/dist/owl.carousel.min.js')}}"></script>

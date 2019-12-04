@@ -27,7 +27,7 @@
             <span><?php echo e(trans('admin.user')); ?></span></a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" id="logoutAdmin" href=<?php echo e(route('logout')); ?> >
+        <a class="nav-link" id="logout" href=<?php echo e(route('logout')); ?> >
             <i class="fas fa-sign-out-alt"></i>
         </a>
         <form id="logout-form" action="<?php echo e(route('logout')); ?>" method="POST" style="display: none;">

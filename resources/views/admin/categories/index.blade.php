@@ -5,7 +5,7 @@
     <div class="container-fluid">
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="{{ route('admin.categories.index') }}">{{ trans('setting.categories') }}</a>
+                <a href="{{ route('admin.categories.index') }}">{{ trans('admin.category') }}</a>
             </li>
             <li class="breadcrumb-item active">@yield('title')</li>
         </ol>
@@ -26,10 +26,6 @@
                                                             <i class="fa fa-plus-square"></i> {{ trans('admin.add_category') }}
                                                         </button>
                                                     </a>
-                                                    @if (session('alert'))
-                                                    <hr>
-                                                        <div class="alert alert-success">{{ session('alert') }}</div>
-                                                    @endif
                                                     <hr>
                                                     <div class="vertical-menu">
                                                         @include('admin.partials.categories_rows', ['level' => 0])
@@ -45,5 +41,6 @@
                 </div>
             </div>
         </div>
+    </div>
 </div>
 @endsection

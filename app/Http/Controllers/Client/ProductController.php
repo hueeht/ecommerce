@@ -8,7 +8,7 @@ use App\Models\Product;
 
 class ProductController extends Controller
 {
-    
+
     public function index()
     {
         $news = $this->getListProducts()->sortByDesc('created_at');

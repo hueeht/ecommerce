@@ -24,7 +24,37 @@
                     <!-- top links -->
                     <div class="toplinks col-md-7 col-sm-8 col-xs-12 hidden-xs">
                         <ul class="links">
-                            <li ><a title="@lang('header.sin')" href=""><span class="hidden-xs">@lang('header.sin')</span></a></li>
+                            @if (Auth::check())
+                                <li>
+                                   <div class="dropdown">
+                                       <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown">
+                                           <i class="fas fa-user">
+                                               {{ Auth::user()->name }}
+                                           </i>
+                                       </button>
+                                       <div class="dropdown-menu">
+                                           <div>
+                                               <a class="dropdown-item" href={{ route('profile') }}><i class="fas fa-user-secret"></i> Profile</a>
+                                           </div>
+                                           <div>
+                                               <a class="dropdown-item" id="logout" href={{ route('logout') }}>
+                                                   <span class="hidden-xs">
+                                                       <i class="fas fa-sign-out-alt"></i> @lang('header.out')
+                                                   </span>
+                                                   <form id="logout-form" action="{{ route('logout') }}" method="POST" >
+                                                       @method('post')
+                                                       @csrf
+                                                   </form>
+                                               </a>
+                                           </div>
+                                       </div>
+                                   </div>
+                                </li>
+                            @else
+                                <li >
+                                    <a title="@lang('header.sin')" href={{ route('login') }}><span class="hidden-xs">@lang('header.sin')</span></a>
+                                </li>
+                            @endif
                         </ul>
                     </div>
                 </div>

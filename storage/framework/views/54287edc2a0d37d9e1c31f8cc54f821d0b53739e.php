@@ -29,24 +29,24 @@
         <?php echo $__env->yieldContent('content'); ?>
         <?php echo $__env->make('admin.layouts.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     </div>
-<!-- Scroll to Top Button-->
-<a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-</a>
-<!-- JavaScript-->
-<!-- Bootstrap core JavaScript-->
-<script src=<?php echo e(asset('bower_components/admin_template/vendor/jquery/jquery.min.js')); ?>></script>
-<script src=<?php echo e(asset('bower_components/admin_template/vendor/bootstrap/js/bootstrap.bundle.min.js')); ?>></script>
-<script src=<?php echo e(asset('bower_components/admin_template/vendor/jquery-easing/jquery.easing.min.js')); ?>></script>
-<script src=<?php echo e(asset('bower_components/admin_template/vendor/datatables/jquery.dataTables.js')); ?>></script>
-<script src=<?php echo e(asset('bower_components/admin_template/vendor/datatables/dataTables.bootstrap4.js')); ?>></script>
-<script src=<?php echo e(asset('bower_components/admin_template/js/sb-admin.min.js')); ?>></script>
-<script src=<?php echo e(asset('bower_components/admin_template/js/demo/datatables-demo.js')); ?>></script>
-<script src=<?php echo e(asset('js/app.js')); ?>></script>
-<script src=<?php echo e(asset('bower_components/admin_template/vendor/chart.js/Chart.min.js')); ?>></script>
-<script src=<?php echo e(asset('bower_components/admin_template/js/demo/chart-area-demo.js')); ?>></script>
-<script src=<?php echo e(asset('bower_components/admin_template/js/demo/chart-bar-demo.js')); ?>></script>
-<script src=<?php echo e(asset('bower_components/admin_template/js/demo/chart-pie-demo.js')); ?>></script>
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+    <!-- JavaScript-->
+    <!-- Bootstrap core JavaScript-->
+    <script src=<?php echo e(asset('bower_components/admin_template/vendor/jquery/jquery.min.js')); ?>></script>
+    <script src=<?php echo e(asset('bower_components/admin_template/vendor/bootstrap/js/bootstrap.bundle.min.js')); ?>></script>
+    <script src=<?php echo e(asset('bower_components/admin_template/vendor/jquery-easing/jquery.easing.min.js')); ?>></script>
+    <script src=<?php echo e(asset('bower_components/admin_template/vendor/datatables/jquery.dataTables.js')); ?>></script>
+    <script src=<?php echo e(asset('bower_components/admin_template/vendor/datatables/dataTables.bootstrap4.js')); ?>></script>
+    <script src=<?php echo e(asset('bower_components/admin_template/js/sb-admin.min.js')); ?>></script>
+    <script src=<?php echo e(asset('bower_components/admin_template/js/demo/datatables-demo.js')); ?>></script>
+    <script src=<?php echo e(asset('js/app.js')); ?>></script>
+    <script src=<?php echo e(asset('bower_components/admin_template/vendor/chart.js/Chart.min.js')); ?>></script>
+    <script src=<?php echo e(asset('bower_components/admin_template/js/demo/chart-area-demo.js')); ?>></script>
+    <script src=<?php echo e(asset('bower_components/admin_template/js/demo/chart-bar-demo.js')); ?>></script>
+    <script src=<?php echo e(asset('bower_components/admin_template/js/demo/chart-pie-demo.js')); ?>></script>
 
 </body>
 

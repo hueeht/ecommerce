@@ -33,7 +33,7 @@
                     <label for="memory">{{ trans('admin.memory') }}:
                         <select name="memory_id" class="custom-select m-md-3">
                             @foreach($memories as $memory)
-                                <option value={{ $memory->id }} selected={{ $memory->id===$product->memory_id?'selected':'' }}>{{ $memory->name }}</option>
+                                <option value={{ $memory->id }} {{ $memory->id===$product->memory_id?'selected':'' }}>{{ $memory->name }}</option>
                             @endforeach
                         </select>
                     </label>
@@ -41,7 +41,6 @@
                 <div class="form-group">
                     <label for="category">{{ trans('admin.category') }}:
                         <select name="category_id" class="custom-select m-md-3">
-                            <option value="0" selected="selected">---- {{ trans('admin.root') }} ----</option>
                             @include('admin.products.category_options', ['level' =>0])
                         </select>
                     </label>
@@ -50,7 +49,7 @@
                     <label for="trademark">{{ trans('admin.trademark') }}:
                         <select name="trademark_id" class="custom-select m-md-3">
                             @foreach($trademarks as $trademark)
-                                <option value={{ $trademark->id }} selected={{ $trademark->id===$product->trademark_id?'selected':'' }}>{{ $trademark->name }}</option>
+                                <option value={{ $trademark->id }} {{ $trademark->id===$product->trademark_id?'selected':'' }}>{{ $trademark->name }}</option>
                             @endforeach
                         </select>
                     </label>

@@ -62,7 +62,7 @@ class ManageCategoryController extends Controller
             'name' => $request->get('name'),
         ]);
 
-        return redirect()->route('admin.categories.index')->with('alert', trans('setting.add_category_success'));
+        return redirect()->route('admin.categories.index');
     }
 
     /**
@@ -105,7 +105,7 @@ class ManageCategoryController extends Controller
             'description' => $request->get('description'),
         ]);
 
-        return redirect()->route('admin.categories.index')->with('alert', trans('setting.edit_category_success'));
+        return redirect()->route('admin.categories.index');
     }
 
 
@@ -120,6 +120,6 @@ class ManageCategoryController extends Controller
         $category = Category::findOrFail($id);
         $category->delete();
 
-        return redirect()->route('admin.categories.index')->with('alert', trans('setting.delete_category_success'));
+        return redirect()->route('admin.categories.index');
     }
 }

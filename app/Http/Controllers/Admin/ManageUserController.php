@@ -89,7 +89,11 @@ class ManageUserController extends Controller
     public function update(Request $request, $id)
     {
         $user = User::find($id);
-        $user->update($request->all());
+        $user->name = $request->name;
+        $user->address = $request->address;
+        $user->phone = $request->phone;
+        $user->email = $request->email;
+        $user->update();
         return redirect()->route('admin.users.index');
     }
 

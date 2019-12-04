@@ -4,17 +4,19 @@
     @csrf
     @method('DELETE')
 <div class="item-menu">
-    <span>
-        <h3>
-            @for ($i = 0; $i < $level; $i++)
-            <i class="fas fa-arrow-right"></i> ||
-            @endfor
-            <i class="fas fa-arrow-right"></i> {{ $category->name }}
-        </h3>
-    </span>
-    <div class="category-fix">
-        <a class="btn btn-warning" href="{{ route('admin.categories.edit', $category->id) }}"><i class="fa fa-edit"></i></a>
-        <button class="btn btn-danger" type="submit" id="delete"><i class="fas fa-trash-alt"></i></button>
+    <div class="row">
+        <div class="col-md-3">
+            <h5>
+                @for ($i = 0; $i < $level; $i++)
+                    <i class="fas fa-level-down-alt"></i>
+                @endfor
+                    {{ $category->name }}
+            </h5>
+        </div>
+        <div class="col-md-3">
+            <a class="btn btn-warning" href="{{ route('admin.categories.edit', $category->id) }}"><i class="fa fa-edit"></i></a>
+            <button class="btn btn-danger" type="submit" id="delete"><i class="fas fa-trash-alt"></i></button>
+        </div>
     </div>
 </div>
 </form>

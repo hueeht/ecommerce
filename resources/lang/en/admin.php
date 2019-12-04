@@ -56,4 +56,14 @@ return [
     'purchaser' => 'PURCHASER',
     'status' => 'STATUS',
     'list_order' => 'LIST ORDER',
+    //
+    'edit' => 'Edit',
+    'order_detail' => 'ORDER DETAIL',
+    'customer_info' => 'CUSTOMER INFORMATION',
+    'stt' => 'NO',
+    'waiting' => 'Waiting',
+    'shipping' => 'Shipping',
+    'shipped' => 'Shipped',
+    'done' => 'Done',
+    'date_order' => "Date Of Purchase"
 ];

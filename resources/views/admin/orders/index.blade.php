@@ -15,6 +15,7 @@
                             <th>{{ trans('admin.total_quantity') }}</th>
                             <th>{{ trans('admin.total_price') }}</th>
                             <th>{{ trans('admin.status') }}</th>
+                            <th>{{ trans('admin.date_order') }}</th>
                             <th>{{ trans('admin.action') }}</th>
                         </tr>
                         </thead>
@@ -24,13 +25,8 @@
                                 <th> {{ $order->id }} </th>
                                 <th> {{ $order->total_quantity }}</th>
                                 <th> {{ $order->total_price }}</th>
-                                <th>
-                                    <select class="btn-group">
-                                        <option><button class="btn btn-primary">{{ $order->status }}</button></option>
-                                        <option><button class="btn btn-primary">{{ $order->status }}</button></option>
-                                        <option><button class="btn btn-primary">{{ $order->status }}</button></option>
-                                    </select>
-                                </th>
+                                <th> {{ $order->status }}</th>
+                                <th> {{ $order->created_at }}</th>
                                 <th>
                                     <a href={{ route('admin.orders.show',$order->id) }}>
                                         <button type="submit" class="btn btn-primary">

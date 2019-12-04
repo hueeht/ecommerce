@@ -27,7 +27,7 @@
             <span>{{ trans('admin.user') }}</span></a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" id="logoutAdmin" href={{ route('logout') }} >
+        <a class="nav-link" id="logout" href={{ route('logout') }} >
             <i class="fas fa-sign-out-alt"></i>
         </a>
         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

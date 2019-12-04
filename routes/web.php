@@ -16,14 +16,18 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [
     'as' => 'client.index',
-    'uses' => 'ProductController@index'
+    'uses' => 'Client\ProductController@index'
 ]);
 
 Route::get('/detail', [
     'as' => 'client.product.detail',
-    'uses' => 'ProductController@getDetail'
+    'uses' => 'Client\ProductController@getDetail'
 ]);
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::prefix('profile')->group(function (){
+    Route::get('/', 'Client\ProfileController@index')->name('profile');
+    Route::get('/edit', 'Client\ProfileController@edit')->name('profile.edit');
+    Route::put('/{id}','Client\ProfileController@update')->name('profile.update');
+});
 
 Auth::routes();
