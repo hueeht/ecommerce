@@ -4,6 +4,16 @@ return [
     'are_you_sure' => 'Are you sure?',
     'category' => 'CATEGORY',
     'action' => 'ACTION',
+    'revenue' => 'MONTHLY REVENUE',
+    'quantity_ordered' => 'QUANTITY ORDERED BY PRODUCT',
+    'new_request' => 'New Request',
+    'id' =>'ID',
+    'name' => 'NAME',
+    'date' => 'Date',
+    'date_buy' => 'Ordered At',
+    'date_shipped' => 'Shipped At',
+    'new_order' => 'New Order',
+
     //categories
     'list_categories' => 'LIST CATEGORIES',
     'root' => 'ROOT',
@@ -27,8 +37,6 @@ return [
     'user' => 'USER',
 
     //product
-    'id' =>'ID',
-    'name' => 'NAME',
     'price' => 'PRICE',
     'price_sale' => 'PRICE SALE',
     'description' => 'DESCRIPTION',
@@ -46,7 +54,7 @@ return [
     'role' => 'ROLE',
     'permission' => 'PERMISSION',
     'client' => 'Client',
-    'admin' => 'Admin',
+    'Admin' => 'Admin',
     'add_user' => 'ADD USER',
     'list_user' => 'LIST USER',
 
@@ -56,7 +64,8 @@ return [
     'purchaser' => 'PURCHASER',
     'status' => 'STATUS',
     'list_order' => 'LIST ORDER',
-    //
+
+    //detail
     'edit' => 'Edit',
     'order_detail' => 'ORDER DETAIL',
     'customer_info' => 'CUSTOMER INFORMATION',
@@ -65,5 +74,7 @@ return [
     'shipping' => 'Shipping',
     'shipped' => 'Shipped',
     'done' => 'Done',
-    'date_order' => "Date Of Purchase"
+
+    //suggest
+    'list_request' => 'LIST SUGGEST',
 ];

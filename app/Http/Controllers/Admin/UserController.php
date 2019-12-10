@@ -2,14 +2,20 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Order;
-use App\Models\OrderDetail;
-use App\Models\Product;
+use App\Http\Controllers\Controller;
+use App\Models\Role;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class ManageOrderController extends Controller
+class UserController extends Controller
 {
-
+    public $name;
+    public $email;
+    public $address;
+    public $phone;
+    public $roles;
+    public $permissions;
+    public $users;
     /**
      * Display a listing of the resource.
      *
@@ -17,9 +23,11 @@ class ManageOrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::all();
-        return view('admin.orders.index', [
-            'orders' => $orders
+        $this->users = User::all();
+        $this->roles = Role::all();
+        return view('admin.users.index',[
+            'users' => $this->users,
+            'roles' => $this->roles,
         ]);
     }
 
@@ -52,16 +60,7 @@ class ManageOrderController extends Controller
      */
     public function show($id)
     {
-        $order = Order::find($id);
-        $order_details = Order::find($id)->orderDetails;
-        $buyer = Order::find($id)->user;
-        $products = Product::all();
-        return view('admin.orders.show', [
-            'details' => $order_details,
-            'buyer' => $buyer,
-            'products' => $products,
-            'order' => $order,
-        ]);
+        //
     }
 
     /**
@@ -72,7 +71,12 @@ class ManageOrderController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+        $roles = Role::all();
+        return view('admin.users.edit',[
+            'user' => $user,
+            'roles' => $roles,
+        ]);
     }
 
     /**
@@ -84,10 +88,13 @@ class ManageOrderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $order = Order::find($id);
-        $order->status = $request->status;
-        $order->update();
-        return redirect()->route('admin.orders.index');
+        $user = User::find($id);
+        $user->name = $request->name;
+        $user->address = $request->address;
+        $user->phone = $request->phone;
+        $user->email = $request->email;
+        $user->update();
+        return redirect()->route('admin.users.index');
     }
 
     /**
@@ -98,6 +105,8 @@ class ManageOrderController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        $user->delete();
+        return redirect()->route('admin.users.index');
     }
 }

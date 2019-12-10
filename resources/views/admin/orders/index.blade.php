@@ -15,7 +15,8 @@
                             <th>{{ trans('admin.total_quantity') }}</th>
                             <th>{{ trans('admin.total_price') }}</th>
                             <th>{{ trans('admin.status') }}</th>
-                            <th>{{ trans('admin.date_order') }}</th>
+                            <th>{{ trans('admin.date_buy') }}</th>
+                            <th>{{ trans('admin.date_shipped') }}</th>
                             <th>{{ trans('admin.action') }}</th>
                         </tr>
                         </thead>
@@ -25,8 +26,23 @@
                                 <th> {{ $order->id }} </th>
                                 <th> {{ $order->total_quantity }}</th>
                                 <th> {{ $order->total_price }}</th>
-                                <th> {{ $order->status }}</th>
+                                <th>
+                                    @if ($order->status == "Waiting")
+                                        <label class="btn-primary">{{ $order->status }}</label>
+                                    @elseif ($order->status == "Shipping")
+                                        <label class="btn-secondary">{{ $order->status }}</label>
+                                    @elseif ($order->status == "Shipped")
+                                        <label class="btn-success">{{ $order->status }}</label>
+                                    @elseif ($order->status == "Reject")
+                                        <label class="btn-danger">{{ $order->status }}</label>
+                                    @endif
+                                </th>
                                 <th> {{ $order->created_at }}</th>
+                                <th>
+                                    @if ($order->status == "Shipped")
+                                        {{ $order->updated_at }}
+                                    @endif
+                                </th>
                                 <th>
                                     <a href={{ route('admin.orders.show',$order->id) }}>
                                         <button type="submit" class="btn btn-primary">

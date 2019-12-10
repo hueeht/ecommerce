@@ -18,20 +18,18 @@ Route::group(['middleware' => ['auth', 'checkRole']], function(){
         'as' => 'admin.index',
         'uses' => 'AdminController@index'
     ]);
-    Route::resource('categories', 'ManageCategoryController', [
+    Route::resource('categories', 'CategoryController', [
         'as' => 'admin',
-        'parameters' => ['categories' => 'id']
     ]);
-    Route::resource('products', 'ManageProductController', [
+    Route::resource('products', 'ProductController', [
         'as' => 'admin',
-        'parameters' => ['products' => 'id']
     ]);
-    Route::resource('users', 'ManageUserController', [
+    Route::resource('users', 'UserController', [
         'as' => 'admin',
-        'parameters' => ['users' => 'id']
     ]);
-    Route::resource('orders', 'ManageOrderController', [
+    Route::resource('orders', 'OrderController', [
         'as' => 'admin',
-        'parameters' => ['orders' => 'id']
     ]);
+    Route::get('suggests','SuggestController@index')->name('admin.suggests.index');
+    Route::post('suggests','SuggestController@update')->name('admin.suggest.update');
 });

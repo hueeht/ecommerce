@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title')</title>
 
     <!-- Custom fonts for this template-->
@@ -44,10 +44,56 @@
     <script src={{ asset('bower_components/admin_template/js/demo/datatables-demo.js') }}></script>
     <script src={{ asset('js/app.js') }}></script>
     <script src={{ asset('bower_components/admin_template/vendor/chart.js/Chart.min.js') }}></script>
-    <script src={{ asset('bower_components/admin_template/js/demo/chart-area-demo.js') }}></script>
     <script src={{ asset('bower_components/admin_template/js/demo/chart-bar-demo.js') }}></script>
     <script src={{ asset('bower_components/admin_template/js/demo/chart-pie-demo.js') }}></script>
-
+    <script>
+        $(document).ready(function () {
+            $("#btnApprove").click(function (e) {
+                e.preventDefault();
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    type: "POST",
+                    url: "/admin/suggests",
+                    data: {
+                        status: $("#btnApprove").val(),
+                        id: $("#suggest-id").val(),
+                    },
+                    success: function (result) {
+                        $("#th-status").html("<label class='btn-success'> "+result.status);
+                    },
+                    error: function (result) {
+                        console.log(result);
+                    }
+                });
+            });
+            $("#btnDeny").click(function (e) {
+                e.preventDefault();
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    type: "POST",
+                    url: "/admin/suggests",
+                    data: {
+                        status: $("#btnDeny").val(),
+                        id: $("#suggest-id").val(),
+                    },
+                    success: function (result) {
+                        $("#th-status").html("<label class='btn-danger'> "+result.status);
+                    },
+                    error: function (result) {
+                        console.log(result);
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>

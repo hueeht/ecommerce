@@ -2,12 +2,17 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Admin;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
+use Illuminate\View\View;
 
-class ManageCategoryController extends Controller
+class CategoryController extends Controller
 {
     private $data;
 
@@ -19,7 +24,7 @@ class ManageCategoryController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Factory|View
      */
     public function index()
     {
@@ -28,19 +33,18 @@ class ManageCategoryController extends Controller
     }
     private function getSubCategories($parent_id, $ignore_id=null)
     {
-        $categories = Category::where('parent_id', $parent_id)
+        return Category::where('parent_id', $parent_id)
             ->where('id', '<>', $ignore_id)
             ->get()
             ->map(function($query) use($ignore_id){
                 $query->sub = $this->getSubCategories($query->id, $ignore_id);
                 return $query;
             });
-        return $categories;
     }
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Factory|View
      */
     public function create()
     {
@@ -51,10 +55,10 @@ class ManageCategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param CategoryRequest $request
+     * @return RedirectResponse
      */
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
         $category = new Category;
         $category->create([
@@ -68,8 +72,8 @@ class ManageCategoryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return void
      */
     public function show($id)
     {
@@ -80,7 +84,7 @@ class ManageCategoryController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Factory|View
      */
     public function edit($id)
     {
@@ -92,11 +96,11 @@ class ManageCategoryController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param CategoryRequest $request
+     * @param int $id
+     * @return RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(CategoryRequest $request, $id)
     {
         $category = Category::findOrFail($id);
         $category->update([
@@ -113,7 +117,7 @@ class ManageCategoryController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      */
     public function destroy($id)
     {

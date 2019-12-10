@@ -13,13 +13,22 @@
                 <div class="form-group">
                     <label for="price">'{{ trans('admin.price') }}:</label>
                     <input type="number" class="form-control" id="price" name="price" value={{ $product->price }}
+                    @error('price')
+                        <div class="has-feedback text-danger">{{ $message }}</div>
+                    @enderror
                 <div class="form-group">
                     <label for="price_sale">{{ trans('admin.price_sale') }}:</label>
                     <input type="number" class="form-control" id="price_sale" name="price_sale" value={{ $product->price_sale }}>
+                    @error('price_sale')
+                    <div class="has-feedback text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="form-group">
                     <label for="description">{{ trans('admin.description') }}:</label>
                     <textarea type="text" class="form-control" id="description" name="description">{{ $product->description }}</textarea>
+                    @error('description')
+                    <div class="has-feedback text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="form-group">
                     <label for="image">{{ trans('admin.image') }}:</label>
@@ -28,6 +37,9 @@
                 <div class="form-group">
                     <label for="quantity">{{ trans('admin.quantity') }}:</label>
                     <input type="number" class="form-control" id="quantity" name="quantity" value={{ $product->quantity }}>
+                    @error('quantity')
+                    <div class="has-feedback text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="form-group">
                     <label for="memory">{{ trans('admin.memory') }}:

@@ -9,26 +9,44 @@
                 <div class="form-group">
                     <label for="name">{{ trans('admin.name') }}:</label>
                     <input type="text" class="form-control" id="name" name="name">
+                    @error('name')
+                    <div class="has-feedback text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="form-group">
                     <label for="price">{{ trans('admin.price') }}:</label>
                     <input type="number" class="form-control" id="price" name="price">
+                    @error('price')
+                    <div class="has-feedback text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="form-group">
                     <label for="price_sale">{{ trans('admin.price_sale') }}:</label>
                     <input type="number" class="form-control" id="price_sale" name="price_sale">
+                    @error('price_sale')
+                    <div class="has-feedback text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="form-group">
                     <label for="description">{{ trans('admin.description') }}:</label>
                     <textarea type="text" class="form-control" id="description" name="description"></textarea>
+                    @error('description')
+                    <div class="has-feedback text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="form-group">
                     <label for="image">{{ trans('admin.image') }}:</label>
                     <input type="file" class="form-control" id="image" name="image">
+                    @error('image')
+                    <div class="has-feedback text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="form-group">
                     <label for="quantity">{{ trans('admin.quantity') }}:</label>
                     <input type="number" class="form-control" id="quantity" name="quantity">
+                    @error('quantity')
+                    <div class="has-feedback text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="form-group">
                     <label for="memory">{{ trans('admin.memory') }}:

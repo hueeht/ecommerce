@@ -2,19 +2,23 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Admin;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\ProductRequest;
 use App\Models\Category;
 use App\Models\Image;
 use App\Models\Memory;
 use App\Models\Product;
 use App\Models\Trademark;
 use DemeterChain\C;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
+use Illuminate\View\View;
 use Symfony\Component\Console\Input\Input;
 
-class ManageProductController extends Controller
+class ProductController extends Controller
 {
     private $name;
     private $price;
@@ -30,7 +34,7 @@ class ManageProductController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return Response
+     * @return Factory|View
      */
     public function index()
     {
@@ -58,7 +62,7 @@ class ManageProductController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return Response
+     * @return Factory|View
      */
     public function create()
     {
@@ -75,10 +79,10 @@ class ManageProductController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
-     * @return void
+     * @param ProductRequest $request
+     * @return RedirectResponse
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
         $product = Product::create($request->all());
         $image = new Image();
@@ -104,7 +108,7 @@ class ManageProductController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param int $id
-     * @return void
+     * @return Factory|View
      */
     public function edit($id)
     {
@@ -125,11 +129,11 @@ class ManageProductController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
+     * @param ProductRequest $request
      * @param int $id
-     * @return void
+     * @return RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(ProductRequest $request, $id)
     {
         $product = Product::find($id);
         $images = Image::where('product_id', $product->id)
@@ -142,7 +146,7 @@ class ManageProductController extends Controller
      * Remove the specified resource from storage.
      *
      * @param int $id
-     * @return void
+     * @return RedirectResponse
      */
     public function destroy($id)
     {
@@ -154,13 +158,12 @@ class ManageProductController extends Controller
     }
     private function getSubCategories($parent_id, $ignore_id=null)
     {
-        $categories = Category::where('parent_id', $parent_id)
+        return Category::where('parent_id', $parent_id)
             ->where('id', '<>', $ignore_id)
             ->get()
             ->map(function($query) use($ignore_id){
                 $query->sub = $this->getSubCategories($query->id, $ignore_id);
                 return $query;
             });
-        return $categories;
     }
 }

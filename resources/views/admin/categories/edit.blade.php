@@ -5,7 +5,7 @@
     <div class="container-fluid">
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="{{ route('admin.categories.index') }}">{{ trans('admin.categories') }}</a>
+                <a href="{{ route('admin.categories.index') }}">{{ trans('admin.category') }}</a>
             </li>
             <li class="breadcrumb-item active">@yield('title')</li>
         </ol>
@@ -37,7 +37,7 @@
                                                     <div class="form-group">
                                                         <label for="">{{ trans('admin.category_name') }}</label>
                                                         <input type="text" class="form-control" name="name" id=""
-                                                            placeholder="Tên danh mục mới" value="{{ $category->name }}">
+                                                            placeholder={{ trans('admin.new_category') }} value="{{ $category->name }}">
                                                     </div>
                                                     <button type="submit" class="btn btn-primary">{{ trans('admin.submit') }}</button>
                                                 </form>
