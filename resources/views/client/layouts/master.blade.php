@@ -42,11 +42,16 @@
 </head>
 
 <body class="cms-index-index cms-home-page">
+
     <!-- Header -->
     @include('client.layouts.header')
     @yield('content')
     @include('client.layouts.footer')
     <!-- jquery js -->
+
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v5.0&appId=115063339046071&autoLogAppEvents=1"></script>
+
     <script src="{{asset('bower_components/client_bower/jquery/dist/jquery.min.js')}}"></script>
 
     <!-- bootstrap js -->
@@ -66,6 +71,8 @@
 
     <!-- main js -->
     <script src="{{asset('js/app.js')}}"></script>
+
+    <script src="{{asset('js/subiz.js')}}"></script>
 
     @stack('js')
 </body>

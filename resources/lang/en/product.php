@@ -10,7 +10,7 @@ return [
     | The following language lines are used in product pages.
     |
     */
-    'tit' => 'products',
+    'tit' => 'Products',
     'new' => 'New Products',
     'hot' => 'Hot Trend Products',
     'des' => 'Product Description',
@@ -23,4 +23,5 @@ return [
     'num' => 'Number',
     'name' => 'Product name',
     'ima' => 'Image',
+    'cmt' => 'Comments',
 ];

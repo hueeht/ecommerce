@@ -34,10 +34,17 @@ class AppServiceProvider extends ServiceProvider
         View::share('categories', $categories);
 
         $carts_qty = 0;
-        if(Cookie::get('cart')) {
+        if(Cookie::get('cart')){
             $carts = Crypt::decrypt(Cookie::get('cart'));
-            $carts_qty = count($carts);
+            if($carts) {
+                $carts_qty = count($carts);
+                $total_price = CartController::getTotalPrice($carts);
+                View::share([
+                    'carts' => $carts,
+                    'total_price' => $total_price,
+                ]);
         }
-        View::share('carts_qty', $carts_qty);
+        }
+        View::share('carts_qty', $carts_qty);;
     }
 }

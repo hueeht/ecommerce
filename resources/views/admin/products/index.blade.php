@@ -40,7 +40,7 @@
                         <th>
                             @foreach($images as $image)
                                 @if ($image->product_id == $product->id)
-                                    <img src={{ asset($image->image) }}>
+                                    <img src="{{ asset('storage/images/products/'.$image->image) }}" width="255">
                                 @endif
                             @endforeach
                         </th>
@@ -57,7 +57,7 @@
                             <form action={{ route('admin.products.destroy', $product->id) }} method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger" onclick="return confirm('{{ trans('admin.are_you_sure') }}');">
+                                <button type="submit" class="btn btn-danger delete" id="delete">
                                     <i class="fa fa-trash-alt"></i>
                                 </button>
                             </form>
@@ -70,4 +70,9 @@
         </div>
     </div>
 </div>
+    <script>
+        $(".delete").click(function () {
+            return confirm("Are You Sure?");
+        });
+    </script>
 @stop

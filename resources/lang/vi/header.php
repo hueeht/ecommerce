@@ -15,4 +15,5 @@ return [
     'en' => 'Tiếng Anh',
     'sup' => 'Đăng kí',
     'sin' => 'Đăng nhập',
+    'out' => 'Đăng xuất',
 ];
