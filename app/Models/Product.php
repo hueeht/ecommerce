@@ -41,8 +41,8 @@ class Product extends Model
     {
         return $this->belongsTo(Memory::class);
     }
-    public function user()
+    public function users()
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class)->withTimestamps();
     }
 }

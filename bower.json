@@ -29,6 +29,11 @@
     "slider-rev": "*",
     "font-awesome": "fontawesome#v4.7.0",
     "admin-bower": "*",
-    "bower-ad": "*"
+    "bower-ad": "*",
+    "bootstrap-sweetalert": "^1.0.1",
+    "jquery.rateit": "^1.1.3",
+    "chart.js": "^2.9.3",
+    "bootstrap-notifications": "^2.0.0",
+    "remarkable-bootstrap-notify": "^3.1.3"
   }
 }

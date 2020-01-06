@@ -1,13 +1,13 @@
 @extends('admin.layouts.master')
+
 @section('content')
-<!-- content -->
 <div id="content-wrapper">
     <div class="container-fluid">
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="{{ route('admin.categories.index') }}">{{ trans('admin.categories') }}</a>
+                <a href="{{ route('admin.categories.index') }}">{{ trans('admin.category') }}</a>
             </li>
-            <li class="breadcrumb-item active"></li>
+            <li class="breadcrumb-item active">{{ trans('admin.add_category') }}</li>
         </ol>
         <div class="card mb-3">
             <div class="card-header">
@@ -30,7 +30,6 @@
                                                             <label for="">{{ trans('admin.category_parent') }}:</label>
                                                             <select class="form-control" name="parent_id"
                                                                 id="parent_id">
-                                                                <option value="0">----{{ trans('admin.root') }}----</option>
                                                                 @include('admin.partials.categories_options', ['level'
                                                                 => 0])
                                                             </select>

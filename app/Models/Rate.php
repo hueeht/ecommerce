@@ -10,6 +10,7 @@ class Rate extends Model
         'product_id',
         'user_id',
         'rating',
+        'status',
     ];
     public function product()
     {

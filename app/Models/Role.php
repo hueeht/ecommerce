@@ -1,9 +1,6 @@
 <?php
-
 namespace App\Models;
-
 use Illuminate\Database\Eloquent\Model;
-
 class Role extends Model
 {
     protected $fillable = [
@@ -14,8 +11,8 @@ class Role extends Model
     {
         return $this->belongsToMany(Permission::class);
     }
-    public function user()
+    public function users()
     {
-        return $this->belongsTo(User::class);
+        return $this->hasMany(User::class);
     }
 }

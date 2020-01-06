@@ -1,7 +1,7 @@
 @extends('client.layouts.master')
 @section('content')
     <!-- Slideshow  -->
-    <div class="main-slider" id="home">
+    <div class="" id="">
         <div class="jtv-slideshow">
             <div id="jtv-slideshow">
                 <div id='rev_slider_4_wrapper' class='rev_slider_wrapper fullwidthbanner-container' >
@@ -46,7 +46,7 @@
                             <div class="navbar-collapse">
                                 <ul class="nav navbar-nav">
                                     <li class="active"><a data-toggle="tab" href="#tab-1">@lang('product.new')</a></li>
-                                    <li class="tab-action"><a data-toggle="tab" href="#tab-hidden">@lang('product.hot')</a></li>
+                                    <li class="tab-action"><a data-toggle="tab" href="#tab-2">@lang('product.hot')</a></li>
                                 </ul>
                             </div>
                             <!-- /.navbar-collapse -->
@@ -56,69 +56,18 @@
                             <div class="tab-panel active" id="tab-1">
                                 <div class="category-products">
                                     <ul class="products-grid">
-                                        @foreach($news as $product)
-                                            <li class="item col-lg-4 col-md-4 col-sm-4 col-xs-6">
-                                                <div class="item-inner">
-                                                        <div class="item-img">
-                                                            <div class="item-img-info">
-                                                                <a class="product-image" href="{{ route('home.products.detail',['id' => $product->id ]) }}"><img class="img-responsive" src="{{ asset('storage/images/products/img01.jpg') }}"></a>
-                                                                <div class="new-label new-top-left">new</div>
-                                                                <div class="action">
-                                                                    <a href="" title="Quick view" ><i class="fa fa-search"></i></a>
-                                                                    <a href="#" title="Add to cart" ><i class="fa fa-shopping-cart"></i></a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="item-info">
-                                                            <div class="info-inner">
-                                                            <div class="item-title"><a title="Product Title Here" href="">{{ $product->name }}</a> </div>
-                                                                <div class="item-content">
-                                                                    <div class="rating"> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> </div>
-                                                                    <div class="item-price">
-                                                                    <div class="price-box"> <span class="regular-price"> <span class="price">{{ number_format($product->price) }}</span> </span> </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                </div>
-                                            </li>
-                                        @endforeach
+                                        @include('client.product.news')
                                     </ul>
                                 </div>
                             </div>
                             <!-- tab hot products -->
-                            <div class="tab-panel active" id="tab-hidden">
-                                    <div class="category-products">
-                                        <ul class="products-grid">
-                                            @foreach($hots as $product)
-                                                <li class="item col-lg-4 col-md-4 col-sm-4 col-xs-6">
-                                                    <div class="item-inner">
-                                                            <div class="item-img">
-                                                                <div class="item-img-info">
-                                                                    <a class="product-image" href="#"><img class="img-responsive" src="{{ asset('storage/images/products/img01.jpg') }}"> </a>
-                                                                    <div class="action">
-                                                                        <a href="#" title="Quick view" ><i class="fa fa-search"></i></a>
-                                                                        <a href="#" title="Add to cart" ><i class="fa fa-shopping-cart"></i></a>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="item-info">
-                                                                <div class="info-inner">
-                                                                <div class="item-title"><a title="Product Title Here" href="">{{ $product->name }}</a> </div>
-                                                                    <div class="item-content">
-                                                                        <div class="rating"> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> </div>
-                                                                        <div class="item-price">
-                                                                        <div class="price-box"> <span class="regular-price"> <span class="price">{{ number_format($product->price) }}</span> </span> </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                    </div>
-                                                </li>
-                                            @endforeach
-                                        </ul>
-                                    </div>
+                            <div class="tab-panel" id="tab-2">
+                                <div class="category-products">
+                                    <ul class="products-grid">
+                                        @include('client.product.hots')
+                                    </ul>
                                 </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -127,9 +76,10 @@
                     @include('client.layouts.sidebar')
                 </div>
             </div>
-
-            
+            @if ($recents != null)
+                @include('client.product.recent')
+            @endif
         </div>
     </div>
-    <!-- jtv bottom banner section -->
+
 @endsection

@@ -13,15 +13,25 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('', [
-    'as' => 'admin.index',
-    'uses' => 'AdminController@index'
-]);
-Route::resource('categories', 'ManageCategoryController', [
-    'as' => 'admin',
-    'parameters' => ['categories' => 'id']
-]);
-Route::resource('products', 'ManageProductController', [
-    'as' => 'admin',
-    'parameters' => ['products' => 'id']
-]);
+Route::group(['middleware' => ['auth', 'checkRole']], function(){
+    Route::get('', [
+        'as' => 'admin.index',
+        'uses' => 'AdminController@index'
+    ]);
+    Route::resource('categories', 'CategoryController', [
+        'as' => 'admin',
+    ]);
+    Route::resource('products', 'ProductController', [
+        'as' => 'admin',
+    ]);
+    Route::resource('users', 'UserController', [
+        'as' => 'admin',
+    ]);
+    Route::resource('orders', 'OrderController', [
+        'as' => 'admin',
+    ]);
+    Route::get('suggests','SuggestController@index')->name('admin.suggests.index');
+    Route::put('suggests/{id}','SuggestController@update')->name('admin.suggests.update');
+    Route::get('rates','RateController@index')->name('admin.rates.index');
+    Route::put('rates/{id}','RateController@update')->name('admin.rates.update');
+});

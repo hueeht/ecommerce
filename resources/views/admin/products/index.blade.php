@@ -13,7 +13,7 @@
         </a>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered" id="dataTable" >
                     <thead class="thead-light">
                     <tr>
                         <th>{{ trans('admin.id') }}</th>
@@ -40,7 +40,7 @@
                         <th>
                             @foreach($images as $image)
                                 @if ($image->product_id == $product->id)
-                                    <img src={{ asset($image->image) }}>
+                                    <img width="200px" height="200px" src={{ asset('storage/images/products/' . $image->image) }} >
                                 @endif
                             @endforeach
                         </th>
@@ -57,7 +57,7 @@
                             <form action={{ route('admin.products.destroy', $product->id) }} method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger" onclick="return confirm('{{ trans('admin.are_you_sure') }}');">
+                                <button type="submit" class="btn btn-danger delete" >
                                     <i class="fa fa-trash-alt"></i>
                                 </button>
                             </form>

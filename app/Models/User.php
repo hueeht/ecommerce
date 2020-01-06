@@ -1,15 +1,11 @@
 <?php
-
 namespace App\Models;
-
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-
 class User extends Authenticatable
 {
     use Notifiable;
-
     /**
      * The attributes that are mass assignable.
      *
@@ -20,7 +16,6 @@ class User extends Authenticatable
         'email',
         'password',
     ];
-
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -30,7 +25,6 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
-
     /**
      * The attributes that should be cast to native types.
      *
@@ -39,14 +33,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
     public function orders()
     {
         return $this->hasMany(Order::class);
-    }
-    public function views()
-    {
-        return $this->hasMany(View::class);
     }
     public function rates()
     {
@@ -62,9 +51,9 @@ class User extends Authenticatable
     }
     public function role()
     {
-        return $this->hasOne(Role::class);
+        return $this->belongsTo(Role::class);
     }
-    public function product()
+    public function products()
     {
         return $this->belongsToMany(Product::class);
     }

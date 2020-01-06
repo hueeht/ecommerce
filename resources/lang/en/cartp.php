@@ -16,5 +16,6 @@ return [
     'price' => 'Unit Price',
     'qty' => 'Quantity',
     'total' => 'Total price',
-    'contain' => 'Your shopping cart contains:'
+    'contain' => 'Your shopping cart contains:',
+    'add' => 'Add to cart',
 ];
