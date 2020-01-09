@@ -9,6 +9,12 @@ use App\Repositories\Client\CategoryRepository;
 use App\Repositories\Client\CategoryRepositoryInterface;
 use App\Repositories\Client\ProductRepository;
 use App\Repositories\Client\ProductRepositoryInterface;
+use App\Repositories\Client\ProfileRepository;
+use App\Repositories\Client\ProfileRepositoryInterface;
+use App\Repositories\Client\RateRepository;
+use App\Repositories\Client\RateRepositoryInterface;
+use App\Repository\Client\OrderRepository;
+use App\Repository\Client\OrderRepositoryInterface;
 use http\Env\Request;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
@@ -33,6 +39,21 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(
             ProductRepositoryInterface::class,
             ProductRepository::class
+        );
+
+        $this->app->singleton(
+            OrderRepositoryInterface::class,
+            OrderRepository::class
+        );
+
+        $this->app->singleton(
+            RateRepositoryInterface::class,
+            RateRepository::class
+        );
+
+        $this->app->singleton(
+            ProfileRepositoryInterface::class,
+            ProfileRepository::class
         );
 
         $this->app->singleton(
@@ -125,7 +146,7 @@ class AppServiceProvider extends ServiceProvider
                     'carts' => $carts,
                     'total_price' => $total_price,
                 ]);
-        }
+            }
         }
         View::share('carts_qty', $carts_qty);
 

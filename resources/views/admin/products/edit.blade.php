@@ -3,7 +3,7 @@
 @section('content')
     <div id="content-wrapper">
         <div class="container col-md-6">
-            <form action={{ route('admin.products.update',$product->id) }} method="POST" >
+            <form action={{ route('admin.products.update',$product->id) }} method="POST" enctype="multipart/form-data">
                 @method('put')
                 @csrf
                 <div class="form-group">
@@ -32,9 +32,14 @@
                 </div>
                 <div class="form-group">
                     <label for="image">{{ trans('admin.image') }}:</label>
-                    <input type="file"  id="image" name="image" onchange="readURL(this);">
+                    <input type="file" name="imageEdit[]" multiple="multiple" id="gallery-photo-add">
+                    <div class="gallery"></div>
+                    <div>
+                        <label for="image-recent">Recently Image</label>
+
+                    </div>
                     @foreach($images as $image)
-                        <img class="img-prd" width="200px" height="200px" src={{ asset('storage/images/' . $image->image) }}>
+                        <img class="img-prd" name="image-recent" width="200px" height="200px" src={{ asset('storage/images/products/' . $image->image) }}>
                     @endforeach
                 </div>
                 <div class="form-group">

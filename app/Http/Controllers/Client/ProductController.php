@@ -2,37 +2,39 @@
 
 namespace App\Http\Controllers\Client;
 
+use App\Exceptions\NotFoundException;
 use App\Http\Controllers\Controller;
-use App\Models\Rate;
 use App\Repositories\Client\ProductRepositoryInterface;
-use Illuminate\Http\Request;
-use App\Models\Product;
-use App\Models\Image;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
 
-    protected $product;
+    protected $product_repository;
 
-    public function __construct(ProductRepositoryInterface $product)
+    public function __construct(ProductRepositoryInterface $productRepository)
     {
-        $this->product = $product;
+        $this->product_repository = $productRepository;
     }
 
     public function index()
     {
-        $news = $this->product->new();
-        $hots = $this->product->hot();
-        $recents = $this->product->recent();
+        $products = $this->product_repository->show();
+        $news = $products['news'];
+        $hots = $products['rates'];
+        $recents = $this->product_repository->recent();
+
         return view('client.index', compact('hots', 'news', 'recents'));
     }
 
 
     public function detail($id)
     {
-        $product = $this->product->find($id);
+        try {
+            $product = $this->product_repository->find($id);
+        } catch (NotFoundException $exception) {
+            throw $exception;
+        }
         if (Auth::check()) {
             $user_id = Auth::user()->id;
             $product->users()->attach($user_id);

@@ -1559,4 +1559,3 @@ jQuery("#gallery_01 .slider-items").owlCarousel({
     slideSpeed: 500,
     pagination: false
 });
-

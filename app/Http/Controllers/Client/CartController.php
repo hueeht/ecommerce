@@ -2,17 +2,26 @@
 
 namespace App\Http\Controllers\Client;
 
-use App\Http\Controllers\Admin\OrderController;
+use App\Exceptions\NotFoundException;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
+use App\Repositories\Client\ProductRepositoryInterface;
+use App\Repository\Client\OrderRepositoryInterface;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Cookie;
-use Illuminate\Support\Facades\Crypt;
 
 class CartController extends Controller
 {
+
+    protected $product_repository;
+    protected $order_repository;
+
+    public function __construct(ProductRepositoryInterface $productRepository, OrderRepositoryInterface $orderRepository)
+    {
+        $this->product_repository = $productRepository;
+        $this->order_repository = $orderRepository;
+    }
 
     public function index(Request $request)
     {
@@ -32,7 +41,11 @@ class CartController extends Controller
         $product_num = $request->product_num;
         $cart = unserialize($request->cookie('cart'));
         if (isset ($cart[$product_id]) ) {
-            $product = Product::findOrFail($product_id);
+            try {
+                $product = $this->product_repository->find($product_id);
+            } catch (NotFoundException $exception) {
+                throw $exception;
+            }
             $qty = $product->quantity;
             $product_num = $product_num + $cart[$product_id]["product_num"];
             if ($product_num > $qty)
@@ -42,8 +55,7 @@ class CartController extends Controller
                 $cookie = cookie('cart', serialize($cart), config('number.time'));
                 $qty = count($cart);
             }
-        }
-        else {
+        } else {
             $cart[$request->product_id] = $this->getProductDetail($product_id, $product_num);
             $cookie = cookie('cart', serialize($cart), config('number.time'));
             $qty = count($cart);
@@ -55,10 +67,15 @@ class CartController extends Controller
 
     public function getProductDetail($id, $num)
     {
-        $product = Product::findOrFail($id);
-        $image = $product->images->first()->getAttribute('image');
+        try {
+            $product = $this->product_repository->find($id);
+        } catch (NotFoundException $exception) {
+            throw $exception;
+        }
+
+        $image = $product->images->first()->image;
         $product_price = $product->price;
-        if($product->price_sale <> 0){
+        if ($product->price_sale <> 0) {
             $product_price = $product->price_sale;
         }
         $num_price = $product_price * $num;
@@ -92,12 +109,17 @@ class CartController extends Controller
         $product_num = $request->product_num;
         $cart = unserialize($request->cookie('cart'));
         $cart[$product_id]["product_num"] = $product_num;
-        $product = Product::findOrFail($product_id);
+
+        try {
+            $product = $this->product_repository->find($product_id);
+        } catch (NotFoundException $exception) {
+            throw $exception;
+        }
+
         $qty = $product->quantity;
         if ($product_num > $qty) {
             $status = config('number.error');
-        }
-        else {
+        } else {
             $cart[$product_id]["num_price"] = $product_num * $cart[$product_id]["product_price"];
             $cookie = cookie('cart', serialize($cart), config('number.time'));
             $carts = unserialize($cookie->getValue());
@@ -124,13 +146,15 @@ class CartController extends Controller
 
     public function submit(Request $request)
     {
+        $carts = unserialize($request->cookie('cart'));
+        if (!$carts) {
+            throw new NotFoundException();
+        }
         $data['user_id'] = Auth::user()->id;
         $data['status'] = 'Waiting';
-        $carts = unserialize($request->cookie('cart'));
         $data['total_quantity'] = count($carts);
-        $data['total_price'] = self::getTotalPrice($carts);
-        $order = Order::create($data);
-        SendMessageController::store($order);
+        $data['total_price'] = $this->getTotalPrice($carts);
+        $order = $this->order_repository->create($data);
         foreach($carts as $cart)
         {
             $order->orderDetails()->create([
@@ -139,13 +163,19 @@ class CartController extends Controller
                 'price' => $cart['product_price'],
             ]);
         }
+        OrderNotificationController::store($order);
         $id = $order->id;
         $cookie  = cookie('cart', null);
+
         return redirect()->route('home.orders.detail', $id)->withCookie($cookie);
     }
 
-    public function checkout()
+    public function checkout(Request $request)
     {
+        $carts = unserialize($request->cookie('cart'));
+        if (!$carts) {
+            throw new NotFoundException();
+        }
         return view('client.cart.checkout');
     }
 }

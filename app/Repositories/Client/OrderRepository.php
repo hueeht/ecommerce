@@ -2,6 +2,7 @@
 
 namespace App\Repository\Client;
 
+use App\Exceptions\NotFoundException;
 use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
 
@@ -20,28 +21,31 @@ class OrderRepository implements OrderRepositoryInterface
 
     public function find($id)
     {
-        try {
-            $order = $this->order->findOrFail($id);
-        } catch (\Exception e){
+        $order = $this->order->find($id);
+        if (!$order) {
+            throw new NotFoundException();
+        }
 
-    }
+        return $order;
     }
 
     public function list()
     {
         $user = Auth::user()->id;
-        $orders = $this->order->get()->where('user_id', $user);
+        $orders = $this->order->where('user_id', $user)->get();
 
-        return view('client.order.list', compact('orders'));
+        return $orders;
     }
 
-    public function detail()
+    public function cancel($id)
     {
-        // TODO: Implement detail() method.
+        $order = $this->find($id);
+        $order->status = 'Canceled';
+        $order->update();
     }
 
-    public function cancel()
+    public function create($order)
     {
-        // TODO: Implement cancel() method.
+        return $this->order->create($order);
     }
 }

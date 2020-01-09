@@ -19,18 +19,23 @@
                             @foreach($orders as $order)
                                 <tr>
                                     <td ><a href="{{ route('home.orders.detail', $order->id) }}">{{ $order->id }}</a></td>
-                                    <td >{{ $order->created_at->format('d-m-Y')}}</td>
+                                    <td >{{ $order->created_at->format('d-m-Y') }}</td>
                                     <td >
                                         @php
-                                            $details = $order->orderDetails;
-                                            foreach ($details as $detail)
+                                        $count = count($order['detail']);
+                                        foreach ($order->detail as $detail)
+                                        {
+                                            echo $detail->product_name;
+                                            if (--$count)
                                             {
-                                                $product = \App\Models\Product::find($detail->product_id);
-                                                echo $product->name . ", ";
+                                                echo ", ";
                                             }
-                                            @endphp
+                                        }
+                                        @endphp
                                     </td>
-                                    <td class="price"><span>{{ number_format($order->total_price) }}</span></td>
+                                    <td class="price">
+                                        <span>{{ money_format('%.2n', $order->total_price) }}</span>
+                                    </td>
                                     <td >{{ $order->status}}</td>
                                 </tr>
                             @endforeach
@@ -38,7 +43,7 @@
                         </table>
                     </div>
                 @else
-                    order is empty
+                    @lang('order.empty')
                 @endif
             </div>
         </div>

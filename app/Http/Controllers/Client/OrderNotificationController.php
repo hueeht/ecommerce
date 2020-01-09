@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Pusher\Pusher;
 
-class SendMessageController extends Controller
+class OrderNotificationController extends Controller
 {
     public function create()
     {
@@ -21,7 +21,6 @@ class SendMessageController extends Controller
 
     public static function store(Order $order)
     {
-        $user = Auth::user();
         $admin = User::find(2);
         $user_name = User::find($order->user_id)->name;
         $data = $order->only([
@@ -44,7 +43,7 @@ class SendMessageController extends Controller
             $options
         );
 
-        $pusher->trigger('OrderInfoNotification', 'send-order-info', $data);
+        $pusher->trigger('SendOrderInfo', 'send-info', $data);
 
     }
 
@@ -55,5 +54,16 @@ class SendMessageController extends Controller
             $notification->markAsRead();
         }
         return redirect()->back();
+    }
+
+    public function mark($id)
+    {
+        foreach (Auth::user()->notifications as $notification)
+        {
+            if ($id == $notification->data['id']) {
+                $notification->markAsRead();
+            }
+        }
+        return redirect()->route('home.orders.detail', $id);
     }
 }

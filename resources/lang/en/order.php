@@ -16,4 +16,6 @@ return [
     'totalprice' => 'Total price',
     'status' => 'Status',
     'id' => 'Order Code',
+    'cancel' => 'Cancel Order',
+    'empty' => 'The order is empty'
 ];

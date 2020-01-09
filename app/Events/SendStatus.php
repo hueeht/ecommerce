@@ -14,13 +14,14 @@ class SendStatus
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
+    public $id;
+
+    public $status;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    protected $id;
-    protected $status;
     public function __construct($data)
     {
         $this->id = $data['id'];

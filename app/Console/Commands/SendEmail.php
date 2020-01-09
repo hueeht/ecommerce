@@ -2,27 +2,24 @@
 
 namespace App\Console\Commands;
 
-use App\Jobs\SendEmailFridayWeekly;
-use App\Mail\EmailFridayWeekly;
+use App\Jobs\SendMailDaily;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Mail;
 
-class EmailFriday extends Command
+class SendEmail extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'email:week';
+    protected $signature = 'email:day';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Send statistical email on Friday weekly';
+    protected $description = 'Send email about the list of orders that have not been checked on day';
 
     /**
      * Create a new command instance.
@@ -41,6 +38,6 @@ class EmailFriday extends Command
      */
     public function handle()
     {
-        dispatch(new SendEmailFridayWeekly());
+        SendMailDaily::dispatch();
     }
 }

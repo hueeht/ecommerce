@@ -6,6 +6,6 @@ interface OrderRepositoryInterface
 {
     public function find($id);
     public function list();
-    public function detail();
-    public function cancel();
+    public function cancel($id);
+    public function create($order);
 }

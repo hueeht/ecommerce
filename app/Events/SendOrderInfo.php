@@ -14,16 +14,16 @@ class SendOrderInfo
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    protected $data;
+    public $user_id;
+    public $user_name;
+    public $id;
+    public $created_at;
+
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    protected $user_id;
-    protected $user_name;
-    protected $id;
-    protected $created_at;
     public function __construct($data)
     {
         $this->user_id = $data['user_id'];
@@ -39,6 +39,6 @@ class SendOrderInfo
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('send-order-info');
+        return new PrivateChannel('send-info');
     }
 }

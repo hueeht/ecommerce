@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Enums\OrderStatus;
+use App\Events\SendStatus;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\OrderDetail;
@@ -121,13 +122,15 @@ class OrderController extends Controller
                 'cluster' => 'ap1',
                 'encrypted' => true
             );
+
             $pusher = new Pusher(
                 env('PUSHER_APP_KEY'),
                 env('PUSHER_APP_SECRET'),
                 env('PUSHER_APP_ID'),
                 $options
             );
-            $pusher->trigger('OrderStatusNotification', 'send-status', $data);
+
+            $pusher->trigger('SendStatus', 'send-status', $data);
         }
 
         if ( $request->status == OrderStatus::Shipping || $request->status == OrderStatus::Shipped )

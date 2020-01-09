@@ -23,11 +23,12 @@ class AdminController extends Controller
     protected $suggestRepository;
     protected $rateRepository;
 
-    public function __construct(OrderRepositoryInterface $orderRepository,
-                                SuggestRepositoryInterface $suggestRepository,
-                                OrderDetailRepositoryInterface $order_detailRepository,
-                                RateRepositoryInterface $rateRepository)
-    {
+    public function __construct(
+        OrderRepositoryInterface $orderRepository,
+        SuggestRepositoryInterface $suggestRepository,
+        OrderDetailRepositoryInterface $order_detailRepository,
+        RateRepositoryInterface $rateRepository
+    ) {
         $this->orderRepository = $orderRepository;
         $this->suggestRepository = $suggestRepository;
         $this->order_detailRepository = $order_detailRepository;

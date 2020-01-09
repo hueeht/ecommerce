@@ -22,4 +22,6 @@ return [
     'new' => 'new',
     'act' => 'Action',
     'sub' => 'Submit',
+    '404' => '<h2>Sorry!</h2><h4>The page you were looking for does not exist!</h4>',
+    'back' => 'Back To Home',
 ];

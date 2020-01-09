@@ -7,7 +7,11 @@
                     <div class="col-main">
                         <div class="page-content checkout-page">
                             <div class="status-block">
-                                <h3><b class="title ">@lang('order.status'): {{ $order->status }} | {{ $order->updated_at->format('d - m - Y') }}</b></h3>
+                                <h3>
+                                    <b class="title ">
+                                        @lang('order.status'): {{ $order->status }} | {{ $order->updated_at->format('d - m - Y') }}
+                                    </b>
+                                </h3>
                             </div>
                             <div class="box-border">
                                 <div class="order-detail-content">
@@ -24,12 +28,18 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach($details as $detail)
+                                        @foreach ($details as $detail)
                                             <tr id="product-cart">
-                                                <td class="cart_description"><p class="product-name"><a href="{{ route('home.products.detail', $detail->product_id) }}">{{ $detail->product_name }}</a></p></td>
-                                                <td class="price"><span>{{ number_format($detail->price) }}</span></td>
+                                                <td class="cart_description">
+                                                    <p class="product-name">
+                                                        <a href="{{ route('home.products.detail', $detail->product_id) }}">{{ $detail->product_name }}</a>
+                                                    </p>
+                                                </td>
+                                                <td class="price"><span>{{ money_format('%.2n',$detail->price) }}</span></td>
                                                 <td class="qty">{{ $detail->quantity }}</td>
-                                                <td class="total-price" id="num-price-{{ $detail->total_price }}"><span>{{ number_format( $detail->num_price) }}</span></td>
+                                                <td class="total-price" id="num-price-{{ $detail->total_price }}">
+                                                    <span>{{ money_format('%.2n', $detail->num_price) }}</span>
+                                                </td>
                                                 @if ($order->status == "Shipped")
                                                     <td><a href="{{ route('home.rate.index', $detail->product_id) }}">@lang('rate.view')</a></td>
                                                 @endif
@@ -38,15 +48,19 @@
                                         </tbody>
                                         <tfoot>
                                         <tr>
-                                            <td colspan="3"><strong>Total</strong></td>
-                                            <td colspan="2" id="total-price"><strong>{{ number_format($order->total_price) }}</strong></td>
+                                            <td colspan="3"><strong>@lang('cartp.total')</strong></td>
+                                            <td colspan="2" id="total-price">
+                                                <strong>{{ money_format('%.2n', $order->total_price) }}</strong>
+                                            </td>
                                         </tr>
                                         </tfoot>
                                     </table>
                                 </div>
                                 <div>
-                                    @if($order->status == "Waiting")
-                                        <a href="{{ route('home.orders.cancel', $order->id) }}"><button class="btn btn-danger">Cancel Order</button></a>
+                                    @if ($order->status == "Waiting")
+                                        <a href="{{ route('home.orders.cancel', $order->id) }}">
+                                            <button class="btn btn-danger">@lang('order.cancel')</button>
+                                        </a>
                                     @endif
                                 </div>
                             </div>

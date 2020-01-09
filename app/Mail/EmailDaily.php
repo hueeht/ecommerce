@@ -2,13 +2,14 @@
 
 namespace App\Mail;
 
+use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\DB;
 
-class EmailFridayWeekly extends Mailable implements ShouldQueue
+class EmailDaily extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -17,10 +18,9 @@ class EmailFridayWeekly extends Mailable implements ShouldQueue
      *
      * @return void
      */
-
     public function __construct()
     {
-
+        //
     }
 
     /**
@@ -30,15 +30,14 @@ class EmailFridayWeekly extends Mailable implements ShouldQueue
      */
     public function build()
     {
-        $statistics = DB::table('orders')
-            ->whereRaw('(created_at <= now()) and (day(now())-day(created_at))<=7')
-            ->selectRaw('status, count(*) as quantity')
-            ->groupBy('status')
+        $orders = DB::table('orders')
+            ->whereRaw('(updated_at <= now()) and (status = "Waiting")')
+            ->selectRaw('*')
             ->get();
 
-        return $this->markdown('admin.emails.statistical_mail')
+        return $this->markdown('client.emails.order_mail')
             ->with([
-                'statistics' => $statistics,
+                'orders' => $orders,
             ]);
     }
 }

@@ -34,4 +34,6 @@ Route::group(['middleware' => ['auth', 'checkRole']], function(){
     Route::put('suggests/{id}','SuggestController@update')->name('admin.suggests.update');
     Route::get('rates','RateController@index')->name('admin.rates.index');
     Route::put('rates/{id}','RateController@update')->name('admin.rates.update');
+    Route::get('notifications', 'NotifyController@readAll')->name('admin.notifications.readAll');
+    Route::get('notifications/{id}', 'NotifyController@viewAndRead')->name('admin.notifications.view');
 });

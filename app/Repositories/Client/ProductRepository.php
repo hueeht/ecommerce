@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Client;
 
+use App\Exceptions\NotFoundException;
 use App\Models\Product;
 use App\Models\Rate;
 use Illuminate\Support\Facades\Auth;
@@ -23,29 +24,32 @@ class ProductRepository implements ProductRepositoryInterface
 
     public function find($id)
     {
-        try {
-            $product = $this->product->findOrFail($id);
-        } catch (\Exception $exception) {
-            return null;
+        $product = $this->product->find($id);
+        if (!$product) {
+            throw new NotFoundException();
         }
+
         return $product;
     }
 
-    public function new()
+    public function show()
     {
-        $product = Product::all()->sortByDesc('created_at');
-        return $product;
-    }
-
-    public function hot()
-    {
-        $rate = $this->rate->get()->sortByDesc('rating');
-        foreach ($rate as $r) {
-            $products[] = Product::where('id',$r->product_id)->get();
+        $products = Product::with(['rates', 'images'])->get();
+        $news = $products->sortByDesc('created_at');
+        foreach ($products as $product)
+        {
+            $rate = $product->rates->avg('rating');
+            if ($rate) {
+                $rates[] = [
+                    'rate' => $rate,
+                    'product' => $product,
+                ];
+            }
         }
-        return $products;
-    }
+        arsort($rates);
 
+        return compact('rates', 'news');
+    }
 
     public function recent()
     {
@@ -60,6 +64,8 @@ class ProductRepository implements ProductRepositoryInterface
     {
         if (Auth::check()) {
             return Auth::user()->all();
-        } else return null;
+        } else
+            return null;
     }
+
 }

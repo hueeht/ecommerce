@@ -54303,6 +54303,7 @@ jQuery("#gallery_01 .slider-items").owlCarousel({
 
 /***/ }),
 
+
 /***/ "./resources/js/subiz.js":
 /*!*******************************!*\
   !*** ./resources/js/subiz.js ***!
@@ -54340,9 +54341,9 @@ subiz('setAccount', 'acqngatkjkqedfycckbf');
 /***/ }),
 
 /***/ 0:
-/*!********************************************************************************************************************************************************************************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/js/custom.js ./resources/js/subiz.js ./resources/js/main.js ./resources/js/master.js ./resources/js/jquery.steps.js ./resources/js/jquery.steps.min.js ./resources/sass/app.scss ***!
-  \********************************************************************************************************************************************************************************************************************************/
+/*!*******************************************************************************************************************************************************************************************************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/js/custom.js ./resources/js/subiz.js ./resources/js/main.js ./resources/js/master.js ./resources/js/jquery.steps.js ./resources/js/jquery.steps.min.js ./resources/js/noti.js ./resources/sass/app.scss ***!
+  \*******************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -54353,6 +54354,7 @@ __webpack_require__(/*! /home/hoanghue/Documents/mobileweb/resources/js/main.js 
 __webpack_require__(/*! /home/hoanghue/Documents/mobileweb/resources/js/master.js */"./resources/js/master.js");
 __webpack_require__(/*! /home/hoanghue/Documents/mobileweb/resources/js/jquery.steps.js */"./resources/js/jquery.steps.js");
 __webpack_require__(/*! /home/hoanghue/Documents/mobileweb/resources/js/jquery.steps.min.js */"./resources/js/jquery.steps.min.js");
+__webpack_require__(/*! /home/hoanghue/Documents/mobileweb/resources/js/noti.js */"./resources/js/noti.js");
 module.exports = __webpack_require__(/*! /home/hoanghue/Documents/mobileweb/resources/sass/app.scss */"./resources/sass/app.scss");
 
 

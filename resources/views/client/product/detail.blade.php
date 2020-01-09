@@ -12,7 +12,7 @@
                                     <div class="new-label new-top-left"></div>
                                     <div class="product-image">
                                         <div class="product-full">
-                                            <img class="img-responsive" id="product-zoom" src="{{ asset('storage/images/products/'.$product->images->first()->getAttribute('image')) }}" data-zoom-image="{{ asset('storage/images/products/'.$product->images->first()->getAttribute('image')) }}" width="400">
+                                            <img class="img-responsive" id="product-zoom" src="{{ asset('storage/images/products/'.$product->images->first()->image) }}" data-zoom-image="{{ asset('storage/images/products/'.$product->images->first()->image) }}" width="400">
                                         </div>
                                     </div>
                                     <!-- more-images -->
@@ -36,7 +36,7 @@
                                                 <i class="fa fa-star-o"></i>
                                             @endif
                                         @endfor
-                                        <a href="{{ route('home.rate.index', $product->id) }}"><i class="fa fa-pencil"></i> write a review</a>
+                                        <span>({{ $product->rates->avg('rating') }}★ / {{ count($product->rates) }} reviews)</span><a href="{{ route('home.rate.index', $product->id) }}"><i class="fa fa-pencil"></i> write a review</a>
                                     </div>
                                     <div class="price-block">
                                         <div class="price-box">

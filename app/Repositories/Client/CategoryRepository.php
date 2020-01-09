@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Client;
 
+use App\Exceptions\NotFoundException;
 use App\Models\Category;
 
 class CategoryRepository implements CategoryRepositoryInterface
@@ -19,10 +20,9 @@ class CategoryRepository implements CategoryRepositoryInterface
      */
     public function find($id)
     {
-        try {
-            $category = $this->category->findOrFail($id);
-        } catch (\Exception $exception) {
-            return null;
+        $category = $this->category->find($id);
+        if (!$category) {
+            throw new NotFoundException();
         }
         return $category;
     }

@@ -17,7 +17,8 @@ mix.js(['resources/js/app.js' ,
     'resources/js/main.js',
     'resources/js/master.js',
     'resources/js/jquery.steps.js',
-    'resources/js/jquery.steps.min.js'
+    'resources/js/jquery.steps.min.js',
+    'resources/js/noti.js',
     ], 'public/js')
     .styles([
         'resources/css/style.css',

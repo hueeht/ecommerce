@@ -1,7 +1,7 @@
 @extends('client.layouts.master')
 @section('content')
     <!-- Slideshow  -->
-    <div class="" id="">
+    <div class="main-slider" id="home">
         <div class="jtv-slideshow">
             <div id="jtv-slideshow">
                 <div id='rev_slider_4_wrapper' class='rev_slider_wrapper fullwidthbanner-container' >

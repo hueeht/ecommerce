@@ -48,8 +48,6 @@
                                         @if ($suggest->status == "Waiting")
                                             <button type="submit" class="btn btn-success" name="status" value="Approved">Approve</button>
                                             <button type="submit" class="btn btn-danger" name="status" value="Denied">Deny</button>
-                                        @elseif ($suggest->status == "Approved")
-                                            <button type="submit" class="btn btn-danger" name="status" value="Denied">Deny</button>
                                         @elseif($suggest->status == "Denied")
                                             <button type="submit" class="btn btn-success" name="status" value="Approved">Approve</button>
                                         @endif

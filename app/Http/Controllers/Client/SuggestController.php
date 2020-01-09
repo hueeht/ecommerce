@@ -9,6 +9,13 @@ use Illuminate\Support\Facades\Auth;
 
 class SuggestController extends Controller
 {
+    protected $suggest;
+
+    public function __construct(Suggest $suggest)
+    {
+        $this->suggest = $suggest;
+    }
+
     public function index()
     {
         return view('client.suggest.index');
@@ -26,7 +33,8 @@ class SuggestController extends Controller
         $user_id = Auth::user()->id;
         $attributes['user_id'] = $user_id;
         $attributes['status'] = 'Waiting';
-        Suggest::create($attributes);
+        $this->suggest->create($attributes);
+
         return redirect()->route('home.suggest')->with('success','Your suggestion is in waiting status');
     }
 }
