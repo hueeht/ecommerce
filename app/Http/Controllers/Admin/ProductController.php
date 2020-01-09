@@ -84,20 +84,20 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
-        $this->productRepository->create($request->all());
-        $image = new Image();
-        if ($request->image == null)
-        {
-            $image->image = Config('admin.default_image');
-        }
-        else
-        {
-            $image->image = $request->image;
+        $product = $this->productRepository->create($request->all());
+        foreach($request->file('image') as $image) {
+                $filenameWithExt = $image->getClientOriginalName();
+                $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+                $extension = $image->getClientOriginalExtension();
+                $fileNameToStore = $filename.'_'.time().'.'.$extension;
+                $path = $image->storeAs('public/images/products', $fileNameToStore);
+                $newImage = new Image([
+                    'product_id' => $product->id,
+                    'image' => $fileNameToStore,
+                ]);
+                $newImage->save();
         }
 
-        $product = Product::all()->last();
-        $image->product_id = $product->id;
-        $image->save();
         return redirect()->route('admin.products.index');
     }
 
@@ -137,19 +137,29 @@ class ProductController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param ProductRequest $request
-     * @param int $id
+     * @param Request $request
+     * @param $id
      * @return RedirectResponse
      */
-    public function update(ProductRequest $request, $id)
+    public function update(Request $request, $id)
     {
         $product = $this->productRepository->find($id);
-        if ($request->image = null)
+        if ($request->hasFile('imageEdit'))
         {
-            Image::where('product_id', $product->id)
-                ->update(['image' => $request->image]);
+            DB::table('images')->where('product_id', '=', $id)->delete();
+            foreach ($request->file('imageEdit') as $image)
+            {
+                $filenameWithExt = $image->getClientOriginalName();
+                $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+                $extension = $image->getClientOriginalExtension();
+                $fileNameToStore = $filename.'_'.time().'.'.$extension;
+                $path = $image->storeAs('public/images/products', $fileNameToStore);
+                $newImage = new Image([
+                    'image' => $fileNameToStore,
+                    'product_id' => $id
+                ]);
+                $newImage->save();
+            }
         }
         $product->update($request->all());
         return redirect()->route('admin.products.index');

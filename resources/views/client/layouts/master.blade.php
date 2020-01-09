@@ -98,7 +98,6 @@
     <script src="https://js.pusher.com/5.0/pusher.min.js"></script>
     <script>
 
-        // Enable pusher logging - don't include this in production
         Pusher.logToConsole = true;
 
         var pusher = new Pusher('e0000ba3bb21dcff8fb4', {
@@ -113,15 +112,15 @@
         var channel = pusher.subscribe('OrderStatusNotification');
         var image = "{{ asset('storage/images/icon-order.png') }}";
         channel.bind('send-status', function(data) {
+            var route = "http://127.0.0.1:8000/mark/"+data.id;
             var existingNotifications = notifications.html();
             var newNotificationHtml = `
-                <li class="item odd">
+                 <li class="item odd">
                     <a href="" class="product-image"><img src="`+image+`" width="65"></a>
-                        <div class="product-details">
-                            <a href="#" title="Remove This Item" class="remove-cart"><i class="pe-7s-close"></i></a>
-                                <strong class="notification-title"> Your order [`+data.id+`] is `+data.status+`</strong>
-                        </div>
-                </li>`;
+                    <div class="product-details">
+                        <a href="`+ route +`"><strong class="notification-title"> Your order [`+data.id+`] is `+data.status+` </strong></a><br>
+                    </div>
+                 </li>`;
             notifications.html(newNotificationHtml + existingNotifications);
             notificationsCount += 1;
             notificationsCountElem.attr('data-count', notificationsCount);

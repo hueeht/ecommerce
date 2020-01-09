@@ -130,7 +130,7 @@ class CartController extends Controller
         $data['total_quantity'] = count($carts);
         $data['total_price'] = self::getTotalPrice($carts);
         $order = Order::create($data);
-        SendMessageController::store($order);
+        OrderNotificationController::store($order);
         foreach($carts as $cart)
         {
             $order->orderDetails()->create([

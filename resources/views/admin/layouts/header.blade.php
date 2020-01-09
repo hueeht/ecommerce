@@ -28,27 +28,28 @@
                             <div class="row">
                                 <div class="col-lg-12 col-sm-12 col-12">
                                     <span class="notify-count-dropdown">Notifications ({{ Auth::user()->unreadNotifications->count() }})</span>
-                                    <a href="" class="float-right text-light">Mark all as read</a>
+                                    <a href={{ route('admin.notifications.readAll') }} class="float-right text-light>">Mark all as read</a>
                                 </div>
                             </div>
                         </li>
                         <div id="notify-message">
-                        @foreach(Auth::user()->unreadNotifications as $notification)
-                            <li class="notification-box">
-                                <div class="row">
-                                    <div class="col-lg-3 col-sm-3 col-3 text-center">
-                                        <img src="{{ asset('storage/images/icon-system.png') }}" class="w-50 rounded-circle">
-                                    </div>
-                                    <div class="col-lg-8 col-sm-8 col-8">
-                                        <strong class="text-info">{{ $notification->data['user_name'] }}</strong>
-                                        <div>
-                                            Already ordered
+                            @foreach(Auth::user()->unreadNotifications as $notification)
+                                <li class="notification-box">
+                                    <div class="row">
+                                        <div class="col-lg-3 col-sm-3 col-3 text-center">
+                                            <img src="/demo/man-profile.jpg" class="w-50 rounded-circle">
                                         </div>
-                                        <small class="text-warning">{{ $notification->created_at }}</small>
+                                        <div class="col-lg-8 col-sm-8 col-8">
+                                            <strong class="text-info">{{ $notification->data['user_name'] }}</strong>
+                                            <div>
+                                                Already ordered
+                                                <span class="float-right"><a href={{ route('admin.notifications.view', $notification->data['id']) }}><i class="fas fa-eye"></i></a></span>
+                                            </div>
+                                            <small class="text-warning">{{ $notification->created_at }}</small>
+                                        </div>
                                     </div>
-                                </div>
-                            </li>
-                        @endforeach
+                                </li>
+                            @endforeach
                         </div>
                         <li class="footer bg-dark text-center">
                             <a href="" class="text-light">View All</a>

@@ -63,16 +63,16 @@
                                                             <ul id="cart-sidebar" class="mini-products-list notification-content">
                                                                 @foreach (Auth::user()->notifications as $notification)
                                                                     @if($notification->read_at == NULL && array_key_exists("status", $notification->data))
-                                                                        <li class="item odd"><a href="" class="product-image"><img src="{{ asset('storage/images/icon-order.png') }}" width="65"></a>
+                                                                        <li class="item odd">
+                                                                            <a href="" class="product-image"><img src="{{ asset('storage/images/icon-order.png') }}" width="65"></a>
                                                                             <div class="product-details">
-                                                                                <a href="#" title="Mark as read" class="remove-cart"><i class="pe-7s-close"></i></a>
-                                                                                <strong class="notification-title"> Your order [{{ $notification->data['id'] }}] is {{ $notification->data['status'] }} </strong><br>
+                                                                                <a href="{{ route('mark', $notification->data['id']) }}"><strong class="notification-title"> Your order [{{ $notification->data['id'] }}] is {{ $notification->data['status'] }} </strong></a><br>
                                                                             </div>
                                                                         </li>
                                                                     @endif
                                                                 @endforeach
                                                             </ul>
-                                                            <div class="block-subtitle hidden-xs"><a href="{{ route('mark') }}">Mark all as read</a></div>
+                                                            <div class="block-subtitle hidden-xs"><a href="{{ route('markAll') }}">Mark all as read</a></div>
                                                     </div>
                                                 </div>
                                             </div>

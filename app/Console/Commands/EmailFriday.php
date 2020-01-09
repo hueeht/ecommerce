@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Jobs\SendEmailFridayWeekly;
 use App\Mail\EmailFridayWeekly;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Auth;
@@ -40,6 +41,6 @@ class EmailFriday extends Command
      */
     public function handle()
     {
-        Mail::to("cxchtc1998@gmail.com")->send(new EmailFridayWeekly());
+        dispatch(new SendEmailFridayWeekly());
     }
 }

@@ -58,7 +58,8 @@ Route::middleware('auth')->group(function () {
         Route::post('/{id}','Client\RateController@submit')->name('home.rate.submit');
     });
 
-    Route::get('/send', 'Client\SendMessageController@create')->name('send');
-    Route::post('/postMessage', 'Client\SendMessageController@store')->name('postMessage');
-    Route::get('/mark', 'Client\SendMessageController@markAll')->name('mark');
+    Route::get('/send', 'Client\OrderNotificationController@create')->name('send');
+    Route::post('/postMessage', 'Client\OrderNotificationController@store')->name('postMessage');
+    Route::get('/markAll', 'Client\OrderNotificationController@markAll')->name('markAll');
+    Route::get('/mark/{id}', 'Client\OrderNotificationController@mark')->name('mark');
 });

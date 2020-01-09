@@ -3,7 +3,7 @@
 @section('content')
     <div id="content-wrapper">
         <div class="container col-md-6">
-            <form action={{ route('admin.products.store') }} method="POST" >
+            <form action={{ route('admin.products.store') }} method="POST" enctype="multipart/form-data">
                 @method('post')
                 @csrf
                 <div class="form-group">
@@ -36,8 +36,8 @@
                 </div>
                 <div class="form-group">
                     <label for="image">{{ trans('admin.image') }}:</label>
-                    <input type="file"  id="image" name="image" onchange="readURL(this);">
-                    <img class="img-prd" width="200px" height="200px" src={{ asset('storage/images/products/img01.jpg') }} alt="">
+                    <input type="file" name="image[]" multiple="multiple" id="gallery-photo-add">
+                    <div class="gallery"></div>
                 </div>
                 <div class="form-group">
                     <label for="quantity">{{ trans('admin.quantity') }}:</label>
