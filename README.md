@@ -1,2 +1,2 @@
 # mobileweb
-read finnaly code in test branch :3
+read finally code in test branch :3
